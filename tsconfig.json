@@ -21,6 +21,6 @@
     "playground/**/*.ts", 
     "playground/**/*.d.ts", 
     "playground/**/*.tsx", 
-    "playground/**/*.vue",
+    "playground/**/*.vue", "vite.config.ts",
   ],
 }
