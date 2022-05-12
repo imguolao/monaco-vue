@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -11,7 +12,19 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@monaco-editor/vue": ["src"],
+      "@monaco-editor/vue/*": ["src/*"],
+      "@hooks": ["src/hooks"],
+      "@hooks/*": ["src/hooks/*"],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@utils": ["src/utils"],
+      "@utils/*": ["src/utils/*"],
+      "@types": ["src/types"],
+      "@types/*": ["src/types/*"],
+    }
   },
   "include": [
     "src/**/*.ts", 
@@ -21,6 +34,7 @@
     "playground/**/*.ts", 
     "playground/**/*.d.ts", 
     "playground/**/*.tsx", 
-    "playground/**/*.vue", "vite.config.ts",
+    "playground/**/*.vue", 
+    "vite.config.ts",
   ],
 }
