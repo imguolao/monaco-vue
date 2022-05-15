@@ -22,18 +22,18 @@
       "@components": ["src/components"],
       "@components/*": ["src/components/*"],
       "@utils": ["src/utils"],
-      "@utils/*": ["src/utils/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": [
-    "src/**/*.ts", 
-    "src/**/*.d.ts", 
-    "src/**/*.tsx", 
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
     "src/**/*.vue",
-    "playground/**/*.ts", 
-    "playground/**/*.d.ts", 
-    "playground/**/*.tsx", 
-    "playground/**/*.vue", 
-    "vite.config.ts",
-  ],
+    "playground/**/*.ts",
+    "playground/**/*.d.ts",
+    "playground/**/*.tsx",
+    "playground/**/*.vue",
+    "vite.config.ts"
+  ]
 }

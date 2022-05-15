@@ -3,17 +3,17 @@ import type { ExtractPropTypes, PropType } from 'vue'
 export const monacoContainerProps = {
   width: {
     type: [Number, String],
-    required: true as true,
+    required: true as const,
   },
 
   height: {
     type: [Number, String],
-    required: true as true,
+    required: true as const,
   },
 
   isEditorReady: {
     type: Boolean,
-    required: true as true,
+    required: true as const,
   },
 
   className: String,
@@ -21,4 +21,4 @@ export const monacoContainerProps = {
   setContainerRef: Function as PropType<(ref: HTMLElement | null) => void>,
 }
 
-export type MonacoContainerProps = ExtractPropTypes<typeof monacoContainerProps> 
+export type MonacoContainerProps = ExtractPropTypes<typeof monacoContainerProps>

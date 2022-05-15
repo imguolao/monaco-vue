@@ -14,15 +14,15 @@ const commonPlugins = [
     ],
   }),
   nodeResolve({
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   }),
   babel({
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     plugins: ['@vue/babel-plugin-jsx'],
     presets: [
       [
-        '@babel/preset-env', 
-        { 
+        '@babel/preset-env',
+        {
           targets: ['> 2%, not dead', 'not IE 11'],
         },
       ],
@@ -35,7 +35,7 @@ const commonPlugins = [
 const external = ['@monaco-editor/loader', 'vue', /node_modules/]
 const globalsForUMD = {
   '@monaco-editor/loader': 'monaco_loader',
-  'vue': 'Vue',
+  vue: 'Vue',
 }
 
 export default [
@@ -84,8 +84,8 @@ export default [
       name: 'monaco_vue',
     },
     plugins: [
-      ...commonPlugins, 
-      terser({ 
+      ...commonPlugins,
+      terser({
         mangle: false,
       }),
     ],
@@ -99,9 +99,9 @@ export default [
     plugins: [
       dts({
         compilerOptions: {
-          preserveSymlinks: false
-        }
-      })
+          preserveSymlinks: false,
+        },
+      }),
     ],
-  }
+  },
 ]

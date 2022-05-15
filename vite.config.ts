@@ -10,9 +10,9 @@ export default defineConfig({
     vueJsx(),
     // dts({
     //   include: [
-    //     'src/**/*.ts', 
-    //     'src/**/*.d.ts', 
-    //     'src/**/*.tsx', 
+    //     'src/**/*.ts',
+    //     'src/**/*.d.ts',
+    //     'src/**/*.tsx',
     //     'src/**/*.vue',
     //   ],
     //   outputDir: 'lib',
@@ -21,7 +21,7 @@ export default defineConfig({
       minify: true,
       entry: './playground/src/main.ts',
       template: './playground/public/index.html',
-    })
+    }),
   ],
   resolve: {
     alias: {
@@ -29,6 +29,6 @@ export default defineConfig({
       '@hooks': resolve(__dirname, './src/hooks'),
       '@components': resolve(__dirname, './src/components'),
       '@utils': resolve(__dirname, './src/utils'),
-    }
-  }
+    },
+  },
 })
