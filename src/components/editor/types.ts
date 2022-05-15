@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { Monaco } from '@types'
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
+import type { MonacoEditor } from '../../types'
+import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 
 export const editorProps = {
   defaultValue: String,
@@ -50,9 +50,9 @@ export const editorProps = {
   /* === */
   'onUpdate:value': Function as PropType<(value: string) => void>,
   onBeforeMount: Function as PropType<() => void>,
-  onMount: Function as PropType<(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void>,
-  onChange: Function as PropType<(value: string, event: monaco.editor.IModelContentChangedEvent) => void>,
-  onValidate: Function as PropType<(markers: monaco.editor.IMarker[]) => void>,
+  onMount: Function as PropType<(editor: monacoEditor.editor.IStandaloneCodeEditor, monaco: MonacoEditor) => void>,
+  onChange: Function as PropType<(value: string, event: monacoEditor.editor.IModelContentChangedEvent) => void>,
+  onValidate: Function as PropType<(markers: monacoEditor.editor.IMarker[]) => void>,
 }
 
 export type EditorProps = ExtractPropTypes<typeof editorProps> 

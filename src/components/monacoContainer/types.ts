@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType, ComponentPublicInstance } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export const monacoContainerProps = {
   width: {

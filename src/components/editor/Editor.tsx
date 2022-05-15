@@ -1,6 +1,6 @@
 import type { ShallowRef } from 'vue'
 import type { EditorProps } from './types'
-import type { Nullable, Monaco } from '@types'
+import type { Nullable, MonacoEditor } from '../../types'
 
 import { 
   defineComponent, 
@@ -13,7 +13,7 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
+import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 import { useMonaco } from '@hooks'
 import { editorProps } from './types'
 import { getOrCreateModel, isUndefined } from '@utils'
@@ -22,7 +22,7 @@ import MonacoContainer from '../monacoContainer'
 export default defineComponent({
   props: editorProps,
   setup(props, { slots }) {
-    const viewStates = new Map<string | undefined, Nullable<monaco.editor.ICodeEditorViewState>>()
+    const viewStates = new Map<string | undefined, Nullable<monacoEditor.editor.ICodeEditorViewState>>()
     const containerRef = shallowRef<Nullable<HTMLElement>>(null)
     const setContainerRef = (el: Nullable<HTMLElement>) => containerRef.value = el
     const { monacoRef, unload } = useMonaco()
@@ -105,10 +105,10 @@ export default defineComponent({
 
 function useEditor(
   props: EditorProps,
-  monacoRef: ShallowRef<Nullable<Monaco>>,
+  monacoRef: ShallowRef<Nullable<MonacoEditor>>,
   containerRef: ShallowRef<Nullable<HTMLElement>>,
 ) {
-  const editorRef = shallowRef<Nullable<monaco.editor.IStandaloneCodeEditor>>(null)
+  const editorRef = shallowRef<Nullable<monacoEditor.editor.IStandaloneCodeEditor>>(null)
 
   onMounted(() => {
     const stop = watchEffect(() => {
@@ -162,8 +162,8 @@ function useEditor(
 
 function useValidator(
   props: EditorProps,
-  monacoRef: ShallowRef<Nullable<Monaco>>,
-  editorRef: ShallowRef<Nullable<monaco.editor.IStandaloneCodeEditor>>,
+  monacoRef: ShallowRef<Nullable<MonacoEditor>>,
+  editorRef: ShallowRef<Nullable<monacoEditor.editor.IStandaloneCodeEditor>>,
 ) {
   const disposeValidator = ref<Nullable<() => void>>(null)
 

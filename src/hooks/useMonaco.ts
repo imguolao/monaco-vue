@@ -1,9 +1,9 @@
-import type { Nullable, Monaco } from '../types'
+import type { Nullable, MonacoEditor } from '../types'
 import { shallowRef } from 'vue'
 import loader from '@monaco-editor/loader'
 
 function useMonaco() {
-  const monacoRef = shallowRef<Nullable<Monaco>>(null)
+  const monacoRef = shallowRef<Nullable<MonacoEditor>>(null)
 
   // monaco mount
   const monacoLoader = loader.init()

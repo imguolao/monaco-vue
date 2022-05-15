@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "outDir": "dist",
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -22,8 +23,6 @@
       "@components/*": ["src/components/*"],
       "@utils": ["src/utils"],
       "@utils/*": ["src/utils/*"],
-      "@types": ["src/types"],
-      "@types/*": ["src/types/*"],
     }
   },
   "include": [
