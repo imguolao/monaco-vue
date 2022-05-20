@@ -48,11 +48,13 @@ export const editorProps = {
   className: String,
 
   /* === */
-  'onUpdate:value': Function as PropType<(value: string) => void>,
-  onBeforeMount: Function as PropType<() => void>,
+  'onUpdate:value': Function as PropType<(value: string | undefined) => void>,
+  onBeforeMount: Function as PropType<(monaco: MonacoEditor) => void>,
   onMount: Function as PropType<(editor: monacoEditor.editor.IStandaloneCodeEditor, monaco: MonacoEditor) => void>,
-  onChange: Function as PropType<(value: string, event: monacoEditor.editor.IModelContentChangedEvent) => void>,
+  onChange: Function as PropType<
+    (value: string | undefined, event: monacoEditor.editor.IModelContentChangedEvent) => void
+  >,
   onValidate: Function as PropType<(markers: monacoEditor.editor.IMarker[]) => void>,
 }
 
-export type EditorProps = ExtractPropTypes<typeof editorProps> 
+export type EditorProps = ExtractPropTypes<typeof editorProps>

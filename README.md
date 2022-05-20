@@ -72,9 +72,9 @@ export default defineComponent(() => {
 
 ### `monaco instance`
 
-#### `onMount` 事件
+#### `onBeforeMount` & `onMount` 事件
 
-[monaco-editor](https://microsoft.github.io/monaco-editor/) 实例可以通过 `onMount` 事件获取。
+[monaco-editor](https://microsoft.github.io/monaco-editor/) 实例可以通过 `onBeforeMount` or `onMount` 事件获取。
 
 ```js
 import { defineComponent, ref } from 'vue'
@@ -82,6 +82,11 @@ import Editor from '@guolao/vue-monaco-editor'
 
 export default defineComponent(() => {
   const monacoRef = ref()
+
+  function handleMonacoBeforeMount(monaco) {
+    // 在这里获取 monaco instance
+    monacoRef.value = editor
+  }
 
   function handleMonacoMount(editor, monaco) {
     // 在这里获取 monaco instance
@@ -94,6 +99,7 @@ export default defineComponent(() => {
       theme='vs-dark'
       defaultLanguage="javascript"
       defaultValue="// some comment"
+      onBeforeMount={handleMonacoBeforeMount}
       onMount={handleEditorMount}
     />
   )
@@ -254,7 +260,7 @@ loader.config({ monaco })
 | height | `number` \| `string` | `100%` | 容器高度 |  |
 | className | `string` |  | 容器 class |  |
 | `onUpdate:value` | `(value: string \| undefined) => void` |  | 编辑改变值后执行 | 可直接使用 `v-model` |
-| onBeforeMount | `() => void` |  | 编辑器实例创建前执行 |  |
+| onBeforeMount | `(monaco: Monaco) => void` |  | 编辑器实例创建前执行 |  |
 | onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | 编辑器实例创建后执行 |  |
 | onChange | `(value: string \| undefined) => void` |  | 编辑改变值后执行 | `monaco.editor.IModelContentChangedEvent) => void` |
 | onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | 当语法发生错误时执行 | `monaco-editor` 支持语法校验的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
