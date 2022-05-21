@@ -38,7 +38,8 @@
     "text"
   ],
   "files": [
-    "lib"
+    "lib",
+    "README.zh-CN.md"
   ],
   "license": "MIT",
   "bugs": {

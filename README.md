@@ -1,8 +1,12 @@
-# monaco-vue [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/suren-atoyan/monaco-react/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) 
+# monaco-vue 
 
-在 [Vue](https://vuejs.org/) 中使用从 [CDN](#cdn) 加载的 [monaco-editor](https://microsoft.github.io/monaco-editor/)，不需要在 `webpack` (or `rollup`, `vite`) 等打包工具中配置插件。
+Use [monaco-editor](https://microsoft.github.io/monaco-editor/) loaded from [CDN](#cdn) in [Vue](https://vuejs.org/), no need to configure plugins in `webpack` (or `rollup`, ` vite`) and other packaging tools to configure the plugin.
 
-如果你想以 `NPM Package` 的形式使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)，并从 `node_modules` 中加载 `monaco-editor` 文件打包到你的代码中，则仍需要使用打包工具的插件，具体可[查看此处](#npm-package)。
+[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/suren-atoyan/monaco-react/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) 
+
+English Documents | [中文文档](./README.zh-CN.md)
+
+If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you will still need Use the plugin for the packaging tool, [viewed here](#npm-package).
 
 ## Installation
 
@@ -17,13 +21,13 @@ yarn add @guolao/vue-monaco-editor
 pnpm add @guolao/vue-monaco-editor
 ```
 
-当然，你也可以使用 [CDN-unpkg](https://unpkg.com/@guolao/vue-monaco-editor@0.0.1-alpha.0/lib/umd/monaco-vue.js)。
+Of course, you can also use [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/lib/umd/monaco-vue.js).
 
 ## Usage
 
 ### `Editor` Component
 
-引入 `Editor` 组件使用即可。
+Just introduce the `Editor` component and use it.
 
 ```js
 import { defineComponent } from 'vue'
@@ -44,7 +48,7 @@ export default defineComponent(() => {
 
 ### `editor instance` 
 
-编辑器实例可以通过 `onMount` 事件获取。
+Get the editor instance from the `onMount` event.
 
 ```js
 import { defineComponent, ref } from 'vue'
@@ -54,7 +58,7 @@ export default defineComponent(() => {
   const editorRef = ref()
 
   function handleEditorMount(editor) {
-    // 在这里获取 editor instance
+    // get the editor instance here
     editorRef.value = editor
   }
 
@@ -72,9 +76,9 @@ export default defineComponent(() => {
 
 ### `monaco instance`
 
-#### `onBeforeMount` & `onMount` 事件
+#### `onBeforeMount` & `onMount` Event
 
-[monaco-editor](https://microsoft.github.io/monaco-editor/) 实例可以通过 `onBeforeMount` or `onMount` 事件获取。
+Get the [monaco-editor](https://microsoft.github.io/monaco-editor/) instance from the `onBeforeMount` or `onMount` event.
 
 ```js
 import { defineComponent, ref } from 'vue'
@@ -84,12 +88,12 @@ export default defineComponent(() => {
   const monacoRef = ref()
 
   function handleMonacoBeforeMount(monaco) {
-    // 在这里获取 monaco instance
+    // get the monaco instance here
     monacoRef.value = editor
   }
 
   function handleMonacoMount(editor, monaco) {
-    // 在这里获取 monaco instance
+    // get the monaco instance here
     monacoRef.value = editor
   }
 
@@ -108,11 +112,11 @@ export default defineComponent(() => {
 
 #### `useMonaco` hook
 
-`vue-monaco-editor` 提供了 `useMonaco` 来加载 [monaco-editor](https://microsoft.github.io/monaco-editor/)。
+`vue-monaco-editor` provides `useMonaco` to load the [monaco-editor](https://microsoft.github.io/monaco-editor/).
 
-`useMonaco` 是使用 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 从 CDN 加载 [monaco-editor](https://microsoft.github.io/monaco-editor/) 文件。
+`useMonaco` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load [monaco-editor](https://microsoft.github.io/monaco-editor/) from the CDN.
 
-需要注意的是 `useMonaco` 仅加载并导出 `monaco` 实例，仍需要配合 `Editor` 组件一起使用，或者你可以使用 `monaco` 实例手动创建编辑器实例。
+Note that `useMonaco` only loads and exports `monaco` instances and still needs to be used with the `Editor` component, or you can use `monaco` instances to create editor instances manually.
 
 ```js
 import { defineComponent, onUnmounted } from 'vue'
@@ -121,9 +125,11 @@ import Editor, { useMonaco } from '@guolao/vue-monaco-editor'
 export default defineComponent(() => {
   const { monacoRef, unload } = useMonaco()
   
-  // 组件卸载时，
-  // monaco instance 没有加载成功的话，
-  // 需要手动取消加载。
+  /*
+    When the component is about to be unmount,
+    If the monaco instance is not successfully loaded,
+    You need to manually unload.
+  */
   onUnmounted(() => !monacoRef.value && unload())
 
   return (
@@ -137,23 +143,23 @@ export default defineComponent(() => {
 })
 ```
 
-#### `loader` 加载
+#### Use `loader`
 
-可以直接使用 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 从 CDN 加载 `monaco instance`，`loader` 的加载过程为异步加载，且只会执行一次加载。
+You can use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load the `monaco instance` directly from the CDN (the loading process of `loader` is asynchronous).
 
-[@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 的相关配置可以直接点击链接查看。
+The configuration for [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) can be [viewed here](https://github.com/suren-atoyan/monaco-loader).
 
 ```js
 import { loader } from "@guolao/vue-monaco-editor"
 
-// CDN 加载
+// loaded from CDN
 loader.config({ 
   paths: { 
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' 
   },
 })
 
-//  可以配置语言
+// configurable for different languages
 loader.config({ "vs/nls": { availableLanguages: { "*": "de" } } })
 
 // or
@@ -170,7 +176,7 @@ loader.config({
 ```
 ## CDN
 
-`vue-monaco-editor` 基于 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 从 CDN 加载文件，默认 CDN 为 [jsdelivr](https://cdn.jsdelivr.net)。
+`vue-monaco-editor` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load the [monaco-editor](https://microsoft.github.io/monaco-editor/) from the CDN, the default CDN is [jsdelivr](https://cdn.jsdelivr.net).
 
 ```js
 loader.config({ 
@@ -180,25 +186,25 @@ loader.config({
 })
 ```
 
-如果你有其他需求，可以通过修改配置从其他地方加载 [monaco-editor](https://microsoft.github.io/monaco-editor/) 相关文件。
+If you have other needs, you can modify the configuration to load the [monaco-editor](https://microsoft.github.io/monaco-editor/) related files from other places.
 
-具体配置请查看 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 。
+Please see [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) for the specific configuration.
 
 ## NPM Package
 
-如果你想以 `NPM Package` 的形式使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)，从 `node_modules` 中加载 `monaco-editor` 文件并打包到你的代码中，则仍需要使用打包工具的插件。
+If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you will still need Use the plugin for the packaging tool.
 
 ```js
 import * as monaco from "monaco-editor"
 import { loader } from "@guolao/vue-monaco-editor"
 
-// 配置从 `node_modules` 中加载 monaco-editor
+// loaded monaco-editor from `node_modules`
 loader.config({ monaco })
 ```
 
 ### Vite
 
-如果使用 `vite`，你需要这样做（具体可查看 [#1791 (comment)](https://github.com/vitejs/vite/discussions/1791#discussioncomment-321046)）：
+If you use `vite`, you need to do this (see [#1791 (comment)](https://github.com/vitejs/vite/discussions/1791#discussioncomment-321046) for details).
 
 ```js
 import { loader } from "@guolao/vue-monaco-editor"
@@ -233,11 +239,11 @@ loader.config({ monaco })
 
 ### Rollup
 
-如果使用 `Rollup`，你可以使用社区提供的插件 [rollup-plugin-monaco-editor](https://github.com/chengcyber/rollup-plugin-monaco-editor)。
+If you use `Rollup`, you can use the community provided plugin [rollup-plugin-monaco-editor](https://github.com/chengcyber/rollup-plugin-monaco-editor).
 
 ### Webpack
 
-如果使用 `webpack`，[monaco-editor](https://microsoft.github.io/monaco-editor/) 官方提供了 `webpack` 的插件 [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin)，你可以安装并使用它。
+If you use `webpack`, [monaco-editor](https://microsoft.github.io/monaco-editor/) officially provides the `webpack` plugin [monaco-editor-webpack-plugin](https:// www.npmjs.com/package/monaco-editor-webpack-plugin), which you can use.
 
 ## Props & Events & slots
 
@@ -245,26 +251,26 @@ loader.config({ monaco })
 
 | Name | Type | Default | Description | remark |
 | --- | --- | --- | --- | --- |
-| defaultValue | `string` |  | 当前编辑器模型的默认值 |  |
-| defaultLanguage | `string` |  | 当前编辑器模型的默认语言 | `monaco-editor` 支持的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
-| defaultPath | `string` |  | 当前编辑器模型的默认路径 | `monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))` |
-| value | `string` |  | 当前编辑器模型的值 | `v-model:value` |
-| language | `string` |  | 当前编辑器模型的语言 | `monaco-editor` 支持的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
-| path | `string` |  | 当前编辑器的路径 |  |
-| theme | `light` \| `vs-dark` | `light` | `monaco-editor` 的主题 | `monaco.editor.defineTheme(...)` |
-| line | `number` |  | 可以设置要跳到行数 |  |
+| defaultValue | `string` |  | default value of the current model |  |
+| defaultLanguage | `string` |  | default language of the current model | languages supported by `monaco-editor` [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
+| defaultPath | `string` |  | default path of the current model | `monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))` |
+| value | `string` |  | value of the current model | `v-model:value` |
+| language | `string` |  | language of the current model | languages supported by `monaco-editor` [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
+| path | `string` |  | path to the current model |  |
+| theme | `light` \| `vs-dark` | `light` | theme of the `monaco-editor` | `monaco.editor.defineTheme(...)` |
+| line | `number` |  | number of lines to jump to |  |
 | options | `object` | `{}` | [IStandaloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IStandaloneEditorConstructionOptions.html) |  |
 | overrideServices | `object` | `{}` | [IEditorOverrideServices](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IEditorOverrideServices.html) |  |
-| saveViewState | `boolean` | `true` | 编辑器模型变更后，保存模型的视图状态（滚动位置等） | 需要给每个模型配置唯一 `path` |
-| width | `number` \| `string` | `100%` | 容器宽度 |  |
-| height | `number` \| `string` | `100%` | 容器高度 |  |
-| className | `string` |  | 容器 class |  |
-| `onUpdate:value` | `(value: string \| undefined) => void` |  | 编辑改变值后执行 | 可直接使用 `v-model` |
-| onBeforeMount | `(monaco: Monaco) => void` |  | 编辑器实例创建前执行 |  |
-| onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | 编辑器实例创建后执行 |  |
-| onChange | `(value: string \| undefined) => void` |  | 编辑改变值后执行 | `monaco.editor.IModelContentChangedEvent) => void` |
-| onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | 当语法发生错误时执行 | `monaco-editor` 支持语法校验的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
-| `#defalut` | `slot` | `'loading...'` | 加载状态 | 从 CDN 加载文件需要一段时间，显示加载状态更为友好 |
+| saveViewState | `boolean` | `true` | save the view state of the model (scroll position, etc.) after model changes | a unique `path` needs to be configured for each model |
+| width | `number` \| `string` | `100%` | container width |  |
+| height | `number` \| `string` | `100%` | container height |  |
+| className | `string` |  | container class name |  |
+| `onUpdate:value` | `(value: string \| undefined) => void` |  | execute when  the changed value change | can use `v-model` |
+| onBeforeMount | `(monaco: Monaco) => void` |  | execute before the editor instance is created |  |
+| onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | execute after the editor instance has been created |  |
+| onChange | `(value: string \| undefined) => void` |  | execute when  the changed value change | `monaco.editor.IModelContentChangedEvent) => void` |
+| onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | execute when a syntax error occurs | `monaco-editor` supports syntax-checked languages [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
+| `#defalut` | `slot` | `'loading...'` | loading status | when loading files from CDN, displaying the loading status will be more friendly |
 
 ## License
 
