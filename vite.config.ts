@@ -8,15 +8,6 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    // dts({
-    //   include: [
-    //     'src/**/*.ts',
-    //     'src/**/*.d.ts',
-    //     'src/**/*.tsx',
-    //     'src/**/*.vue',
-    //   ],
-    //   outputDir: 'lib',
-    // }),
     createHtmlPlugin({
       minify: true,
       entry: './playground/src/main.ts',
@@ -25,7 +16,6 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@monaco-editor/vue': resolve(__dirname, './src'),
       '@hooks': resolve(__dirname, './src/hooks'),
       '@components': resolve(__dirname, './src/components'),
       '@utils': resolve(__dirname, './src/utils'),
