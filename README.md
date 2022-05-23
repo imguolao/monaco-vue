@@ -6,7 +6,7 @@ Use [monaco-editor](https://microsoft.github.io/monaco-editor/) loaded from [CDN
 
 English Documents | [中文文档](./README.zh-CN.md)
 
-If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you will still need Use the plugin for the packaging tool, [viewed here](#npm-package).
+If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you still need to Use the plugin for the packaging tool, [viewed here](#npm-package).
 
 ## Installation
 
@@ -27,7 +27,7 @@ Of course, you can also use [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/
 
 ### `Editor` Component
 
-Just introduce the `Editor` component and use it.
+Just import the `Editor` component and use it.
 
 ```js
 import { defineComponent } from 'vue'
@@ -126,7 +126,7 @@ export default defineComponent(() => {
   const { monacoRef, unload } = useMonaco()
   
   /*
-    When the component is about to be unmount,
+    When the component will be unmount,
     If the monaco instance is not successfully loaded,
     You need to manually unload.
   */
@@ -192,7 +192,7 @@ Please see [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader
 
 ## NPM Package
 
-If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you will still need Use the plugin for the packaging tool.
+If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you still need to use the plugin for the packaging tool.
 
 ```js
 import * as monaco from "monaco-editor"
@@ -243,7 +243,7 @@ If you use `Rollup`, you can use the community provided plugin [rollup-plugin-mo
 
 ### Webpack
 
-If you use `webpack`, [monaco-editor](https://microsoft.github.io/monaco-editor/) officially provides the `webpack` plugin [monaco-editor-webpack-plugin](https:// www.npmjs.com/package/monaco-editor-webpack-plugin), which you can use.
+If you use `webpack`, [monaco-editor](https://microsoft.github.io/monaco-editor/) officially provides the `webpack` plugin [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin), which you can use.
 
 ## Props & Events & slots
 
