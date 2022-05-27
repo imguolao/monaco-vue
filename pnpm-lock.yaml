@@ -24,7 +24,6 @@ specifiers:
   lint-staged: ^12.4.1
   monaco-editor: ^0.33.0
   np: ^7.6.1
-  only-allow: ^1.1.0
   postcss: ^8.4.13
   prettier: ^2.6.2
   rimraf: ^3.0.2
@@ -63,7 +62,6 @@ devDependencies:
   lint-staged: registry.npmmirror.com/lint-staged/12.4.1
   monaco-editor: registry.npmmirror.com/monaco-editor/0.33.0
   np: registry.npmmirror.com/np/7.6.1
-  only-allow: registry.npmmirror.com/only-allow/1.1.0
   postcss: registry.npmmirror.com/postcss/8.4.13
   prettier: registry.npmmirror.com/prettier/2.6.2
   rimraf: registry.npmmirror.com/rimraf/3.0.2
@@ -318,11 +316,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /which-pm-runs/1.1.0:
-    resolution: {integrity: sha512-n1brCuqClxfFfq/Rb0ICg9giSZqCS+pLtccdag6C2HyufBrh3fBOiy9nb6ggRMvWOVH5GrdJskj5iGTZNxd7SA==}
-    engines: {node: '>=4'}
-    dev: true
 
   registry.nlark.com/@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/@nodelib/fs.scandir/download/@nodelib/fs.scandir-2.1.5.tgz}
@@ -2032,8 +2025,10 @@ packages:
       zen-observable:
         optional: true
     dependencies:
-      any-observable: registry.npmmirror.com/any-observable/0.3.0
+      any-observable: registry.npmmirror.com/any-observable/0.3.0_rxjs@6.6.7
       rxjs: registry.npmmirror.com/rxjs/6.6.7
+    transitivePeerDependencies:
+      - zenObservable
     dev: true
 
   registry.npmmirror.com/@sindresorhus/is/0.14.0:
@@ -2634,11 +2629,22 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  registry.npmmirror.com/any-observable/0.3.0:
+  registry.npmmirror.com/any-observable/0.3.0_rxjs@6.6.7:
     resolution: {integrity: sha512-/FQM1EDkTsf63Ub2C6O7GuYFDsSXUwsaZDurV0np41ocwq0jthUAYCmhBX9f+KwlaCgIuWyr/4WlUQUBfKfZog==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/any-observable/-/any-observable-0.3.0.tgz}
+    id: registry.npmmirror.com/any-observable/0.3.0
     name: any-observable
     version: 0.3.0
     engines: {node: '>=6'}
+    peerDependencies:
+      rxjs: '*'
+      zenObservable: '*'
+    peerDependenciesMeta:
+      rxjs:
+        optional: true
+      zenObservable:
+        optional: true
+    dependencies:
+      rxjs: registry.npmmirror.com/rxjs/6.6.7
     dev: true
 
   registry.npmmirror.com/any-observable/0.5.1_rxjs@6.6.7:
@@ -2768,22 +2774,6 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/boolbase/-/boolbase-1.0.0.tgz}
     name: boolbase
     version: 1.0.0
-    dev: true
-
-  registry.npmmirror.com/boxen/4.2.0:
-    resolution: {integrity: sha512-eB4uT9RGzg2odpER62bBwSLvUeGC+WbRjjyyFhGsKnc8wp/m0+hQsMUvUe3H2V0D5vw0nBdO1hCJoZo5mKeuIQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/boxen/-/boxen-4.2.0.tgz}
-    name: boxen
-    version: 4.2.0
-    engines: {node: '>=8'}
-    dependencies:
-      ansi-align: registry.npmmirror.com/ansi-align/3.0.1
-      camelcase: registry.npmmirror.com/camelcase/5.3.1
-      chalk: registry.npmmirror.com/chalk/3.0.0
-      cli-boxes: registry.npmmirror.com/cli-boxes/2.2.1
-      string-width: registry.npmmirror.com/string-width/4.2.3
-      term-size: registry.npmmirror.com/term-size/2.2.1
-      type-fest: registry.npmmirror.com/type-fest/0.8.1
-      widest-line: registry.npmmirror.com/widest-line/3.1.0
     dev: true
 
   registry.npmmirror.com/boxen/5.1.2:
@@ -2979,16 +2969,6 @@ packages:
       ansi-styles: registry.npmmirror.com/ansi-styles/3.2.1
       escape-string-regexp: registry.npmmirror.com/escape-string-regexp/1.0.5
       supports-color: registry.npmmirror.com/supports-color/5.5.0
-    dev: true
-
-  registry.npmmirror.com/chalk/3.0.0:
-    resolution: {integrity: sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chalk/-/chalk-3.0.0.tgz}
-    name: chalk
-    version: 3.0.0
-    engines: {node: '>=8'}
-    dependencies:
-      ansi-styles: registry.npmmirror.com/ansi-styles/4.3.0
-      supports-color: registry.npmmirror.com/supports-color/7.2.0
     dev: true
 
   registry.npmmirror.com/chalk/4.1.2:
@@ -5362,6 +5342,7 @@ packages:
       rxjs: registry.npmmirror.com/rxjs/6.6.7
     transitivePeerDependencies:
       - zen-observable
+      - zenObservable
     dev: true
 
   registry.npmmirror.com/listr2/4.0.5:
@@ -5718,7 +5699,6 @@ packages:
     resolution: {integrity: sha512-VcRWPSLIUEgQJQIE0pVT8FcGBIgFoxz7jtqctE+IiCxWugD0DwgyQBcZBhdSrdMC84eumoqMZsGl2GTreOzwqw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/monaco-editor/-/monaco-editor-0.33.0.tgz}
     name: monaco-editor
     version: 0.33.0
-    dev: true
 
   registry.npmmirror.com/ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ms/-/ms-2.1.2.tgz}
@@ -5883,6 +5863,7 @@ packages:
       update-notifier: registry.npmmirror.com/update-notifier/5.1.0
     transitivePeerDependencies:
       - zen-observable
+      - zenObservable
     dev: true
 
   registry.npmmirror.com/npm-name/6.0.1:
@@ -5982,16 +5963,6 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       mimic-fn: registry.npmmirror.com/mimic-fn/2.1.0
-    dev: true
-
-  registry.npmmirror.com/only-allow/1.1.0:
-    resolution: {integrity: sha512-HYiuMpRuy0d0DjoQZwhwO1Ueal0NXJ2I4mNxLv3aGw/1naRcAAzVC953WNpcbjlo+ak3WsoKDjHvoMd2cSZLpw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/only-allow/-/only-allow-1.1.0.tgz}
-    name: only-allow
-    version: 1.1.0
-    hasBin: true
-    dependencies:
-      boxen: registry.npmmirror.com/boxen/4.2.0
-      which-pm-runs: 1.1.0
     dev: true
 
   registry.npmmirror.com/open/7.4.2:
@@ -7318,13 +7289,6 @@ packages:
     dependencies:
       temp-dir: registry.npmmirror.com/temp-dir/2.0.0
       uuid: registry.npmmirror.com/uuid/3.4.0
-    dev: true
-
-  registry.npmmirror.com/term-size/2.2.1:
-    resolution: {integrity: sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/term-size/-/term-size-2.2.1.tgz}
-    name: term-size
-    version: 2.2.1
-    engines: {node: '>=8'}
     dev: true
 
   registry.npmmirror.com/terminal-link/2.1.1:
