@@ -1,3 +1,7 @@
+## [0.0.3](https://github.com/imguolao/monaco-vue/compare/v0.0.2...v0.0.3) (2022-05-27)
+
+
+
 ## [0.0.2](https://github.com/imguolao/monaco-vue/compare/v0.0.1...v0.0.2) (2022-05-21)
 
 
