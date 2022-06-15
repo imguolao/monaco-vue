@@ -1,3 +1,12 @@
+## [0.0.4](https://github.com/imguolao/monaco-vue/compare/v0.0.2...v0.0.4) (2022-06-15)
+
+
+### Bug Fixes
+
+* editor are rendered multiple times ([46bc8e5](https://github.com/imguolao/monaco-vue/commit/46bc8e5f9b39ddac5d296f34b5e88e4b8aeb8bc0))
+
+
+
 ## [0.0.3](https://github.com/imguolao/monaco-vue/compare/v0.0.2...v0.0.3) (2022-05-27)
 
 
