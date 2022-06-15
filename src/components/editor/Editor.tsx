@@ -116,7 +116,7 @@ function useEditor(
   })
 
   function createEditor() {
-    if (!containerRef.value || !monacoRef.value) {
+    if (!containerRef.value || !monacoRef.value || editorRef.value ) {
       return
     }
 
