@@ -2,7 +2,7 @@ import type { ShallowRef } from 'vue'
 import type { EditorProps } from './types'
 import type { Nullable, MonacoEditor } from '../../types'
 
-import { defineComponent, nextTick, onMounted, onUnmounted, computed, shallowRef, ref, watch, watchEffect } from 'vue'
+import { defineComponent, nextTick, onMounted, onUnmounted, computed, shallowRef, ref, watch } from 'vue'
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 import { useMonaco } from '@hooks'
 import { editorProps } from './types'
@@ -107,16 +107,20 @@ function useEditor(
   const editorRef = shallowRef<Nullable<monacoEditor.editor.IStandaloneCodeEditor>>(null)
 
   onMounted(() => {
-    const stop = watchEffect(() => {
-      if (monacoRef.value) {
-        nextTick(() => stop())
-        createEditor()
-      }
-    })
+    const stop = watch(
+      monacoRef,
+      () => {
+        if (containerRef.value && monacoRef.value) {
+          nextTick(() => stop())
+          createEditor()
+        }
+      },
+      { immediate: true },
+    )
   })
 
   function createEditor() {
-    if (!containerRef.value || !monacoRef.value || editorRef.value ) {
+    if (!containerRef.value || !monacoRef.value || editorRef.value) {
       return
     }
 
@@ -167,7 +171,7 @@ function useValidator(
 ) {
   const disposeValidator = ref<Nullable<() => void>>(null)
 
-  const stop = watchEffect(() => {
+  const stop = watch([monacoRef, editorRef], () => {
     if (monacoRef.value && editorRef.value) {
       nextTick(() => stop())
       const changeMarkersListener = monacoRef.value.editor.onDidChangeMarkers(uris => {
