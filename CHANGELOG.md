@@ -1,3 +1,12 @@
+## [0.0.5](https://github.com/imguolao/monaco-vue/compare/v0.0.4...v0.0.5) (2022-07-02)
+
+
+### Bug Fixes
+
+* watch once not working ([582cf46](https://github.com/imguolao/monaco-vue/commit/582cf46c97d25324c256eaf8f3adbda925dc4ac1))
+
+
+
 ## [0.0.4](https://github.com/imguolao/monaco-vue/compare/v0.0.2...v0.0.4) (2022-06-15)
 
 
