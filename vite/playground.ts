@@ -10,15 +10,15 @@ export default defineConfig({
     vueJsx(),
     createHtmlPlugin({
       minify: true,
-      entry: './playground/src/main.ts',
-      template: './playground/public/index.html',
+      entry: '../playground/src/main.ts',
+      template: '../playground/public/index.html',
     }),
   ],
   resolve: {
     alias: {
-      '@hooks': resolve(__dirname, './src/hooks'),
-      '@components': resolve(__dirname, './src/components'),
-      '@utils': resolve(__dirname, './src/utils'),
+      '@hooks': resolve(__dirname, '../src/hooks'),
+      '@components': resolve(__dirname, '../src/components'),
+      '@utils': resolve(__dirname, '../src/utils'),
     },
   },
 })

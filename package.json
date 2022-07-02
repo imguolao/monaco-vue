@@ -11,7 +11,8 @@
   "unpkg": "lib/umd/monaco-vue.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite -c ./vite/playground.ts",
+    "dev:website": "vite -c ./vite/website.ts",
     "build": "rimraf lib && rollup -c",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md README.*",
     "eslint-fix": "eslint --fix ./src  --ext .vue,.js,.ts,.tsx",

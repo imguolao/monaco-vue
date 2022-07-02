@@ -26,14 +26,10 @@
     }
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "playground/**/*.ts",
-    "playground/**/*.d.ts",
-    "playground/**/*.tsx",
-    "playground/**/*.vue",
-    "vite.config.ts"
-  ]
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.tsx",
+    "**/*.vue",
+  ],
+  "exclude": ["node_modules", "lib", "dist"]
 }
