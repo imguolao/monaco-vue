@@ -4,13 +4,13 @@
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) 
 
-中文文档 | [English Documents](./README.md)
+中文文档 | [English Documents](https://github.com/imguolao/monaco-vue/blob/feat/website/README.md)
 
 如果你想以 `NPM Package` 的形式使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)，从 `node_modules` 加载 `monaco-editor` 文件打包到你的代码中，则仍需要使用打包工具的插件，具体可[查看此处](#npm-package)。
 
 ## Installation
 
-```sh
+```bash
 # npm
 npm i @guolao/vue-monaco-editor
 
@@ -29,7 +29,7 @@ pnpm add @guolao/vue-monaco-editor
 
 引入 `Editor` 组件使用即可。
 
-```js
+```jsx
 import { defineComponent } from 'vue'
 import Editor from '@guolao/vue-monaco-editor'
 
@@ -50,7 +50,7 @@ export default defineComponent(() => {
 
 编辑器实例可以通过 `onMount` 事件获取。
 
-```js
+```jsx
 import { defineComponent, ref } from 'vue'
 import Editor from '@guolao/vue-monaco-editor'
 
@@ -80,7 +80,7 @@ export default defineComponent(() => {
 
 [monaco-editor](https://microsoft.github.io/monaco-editor/) 实例可以通过 `onBeforeMount` or `onMount` 事件获取。
 
-```js
+```jsx
 import { defineComponent, ref } from 'vue'
 import Editor from '@guolao/vue-monaco-editor'
 
@@ -118,7 +118,7 @@ export default defineComponent(() => {
 
 需要注意的是 `useMonaco` 仅加载并导出 `monaco` 实例，仍需要配合 `Editor` 组件一起使用，或者你可以使用 `monaco` 实例手动创建编辑器实例。
 
-```js
+```jsx
 import { defineComponent, onUnmounted } from 'vue'
 import Editor, { useMonaco } from '@guolao/vue-monaco-editor'
 
