@@ -30,6 +30,7 @@
     "**/*.d.ts",
     "**/*.tsx",
     "**/*.vue",
+    "**/*.md",
   ],
   "exclude": ["node_modules", "lib", "dist"]
 }

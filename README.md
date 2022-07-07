@@ -4,13 +4,13 @@ Use [monaco-editor](https://microsoft.github.io/monaco-editor/) loaded from [CDN
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) 
 
-English Documents | [中文文档](./README.zh-CN.md)
+English Documents | [中文文档](https://github.com/imguolao/monaco-vue/blob/feat/website/README.zh-CN.md)
 
 If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you still need to Use the plugin for the packaging tool, [viewed here](#npm-package).
 
 ## Installation
 
-```sh
+```bash
 # npm
 npm i @guolao/vue-monaco-editor
 
@@ -29,7 +29,7 @@ Of course, you can also use [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/
 
 Just import the `Editor` component and use it.
 
-```js
+```jsx
 import { defineComponent } from 'vue'
 import Editor from '@guolao/vue-monaco-editor'
 
@@ -50,7 +50,7 @@ export default defineComponent(() => {
 
 Get the editor instance from the `onMount` event.
 
-```js
+```jsx
 import { defineComponent, ref } from 'vue'
 import Editor from '@guolao/vue-monaco-editor'
 
@@ -80,7 +80,7 @@ export default defineComponent(() => {
 
 Get the [monaco-editor](https://microsoft.github.io/monaco-editor/) instance from the `onBeforeMount` or `onMount` event.
 
-```js
+```jsx
 import { defineComponent, ref } from 'vue'
 import Editor from '@guolao/vue-monaco-editor'
 
@@ -118,7 +118,7 @@ export default defineComponent(() => {
 
 Note that `useMonaco` only loads and exports `monaco` instances and still needs to be used with the `Editor` component, or you can use `monaco` instances to create editor instances manually.
 
-```js
+```jsx
 import { defineComponent, onUnmounted } from 'vue'
 import Editor, { useMonaco } from '@guolao/vue-monaco-editor'
 
@@ -149,7 +149,7 @@ You can use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loade
 
 The configuration for [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) can be [viewed here](https://github.com/suren-atoyan/monaco-loader).
 
-```js
+```typescript
 import { loader } from "@guolao/vue-monaco-editor"
 
 // loaded from CDN
