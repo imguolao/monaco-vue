@@ -15,8 +15,6 @@
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "paths": {
-      "@monaco-editor/vue": ["src"],
-      "@monaco-editor/vue/*": ["src/*"],
       "@hooks": ["src/hooks"],
       "@hooks/*": ["src/hooks/*"],
       "@components": ["src/components"],

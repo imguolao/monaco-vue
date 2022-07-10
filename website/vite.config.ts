@@ -9,7 +9,8 @@ const outDir = resolve(rootDir, '../dist')
 
 export default defineConfig(({ mode }) => {
   return {
-    base: mode === 'production' ? './' : './',
+    // gh-pages
+    base: mode === 'production' ? '/monaco-vue/' : './',
     root: rootDir,
     define: {
       'process.env': {
@@ -18,6 +19,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir,
+      emptyOutDir: true,
     },
     plugins: [
       vue(),
