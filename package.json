@@ -46,7 +46,7 @@
   "bugs": {
     "url": "https://github.com/imguolao/monaco-vue/issues"
   },
-  "homepage": "https://github.com/imguolao/monaco-vue#readme",
+  "homepage": "https://imguolao.github.io/monaco-vue",
   "lint-staged": {
     "src/**/*.{js,ts,tsx}": [
       "prettier --write",

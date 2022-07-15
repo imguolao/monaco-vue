@@ -7,10 +7,9 @@ import pkg from '../package.json';
 const rootDir = resolve(__dirname, 'public')
 const outDir = resolve(rootDir, '../dist')
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   return {
-    // gh-pages
-    base: mode === 'production' ? '/monaco-vue/' : './',
+    base: './',
     root: rootDir,
     define: {
       'process.env': {
