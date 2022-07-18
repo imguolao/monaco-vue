@@ -4,7 +4,9 @@
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) 
 
-中文文档 | [English Documents](https://github.com/imguolao/monaco-vue/blob/feat/website/README.md)
+中文文档 | [English Documents](https://github.com/imguolao/monaco-vue/blob/main/README.md)
+
+查看 [Demo](https://imguolao.github.io/monaco-vue/).
 
 如果你想以 `NPM Package` 的形式使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)，从 `node_modules` 加载 `monaco-editor` 文件打包到你的代码中，则仍需要使用打包工具的插件，具体可[查看此处](#npm-package)。
 
