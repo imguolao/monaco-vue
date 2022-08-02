@@ -10,6 +10,25 @@ View [Demo](https://imguolao.github.io/monaco-vue/).
 
 If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you still need to Use the plugin for the packaging tool, [viewed here](#npm-package).
 
+## Contents
+
+  - [Contents](#contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [`Editor` Component](#editor-component)
+    - [`editor instance`](#editor-instance)
+    - [`monaco instance`](#monaco-instance)
+      - [`onBeforeMount` & `onMount` Event](#onbeforemount--onmount-event)
+      - [`useMonaco` hook](#usemonaco-hook)
+      - [Use `loader`](#use-loader)
+  - [CDN](#cdn)
+  - [NPM Package](#npm-package)
+    - [Vite](#vite)
+    - [Rollup](#rollup)
+    - [Webpack](#webpack)
+  - [Props & Events & slots](#props--events--slots)
+  - [License](#license)
+
 ## Installation
 
 ```bash

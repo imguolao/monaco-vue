@@ -10,6 +10,24 @@
 
 如果你想以 `NPM Package` 的形式使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)，从 `node_modules` 加载 `monaco-editor` 文件打包到你的代码中，则仍需要使用打包工具的插件，具体可[查看此处](#npm-package)。
 
+## Contents
+
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [`Editor` Component](#editor-component)
+    - [`editor instance`](#editor-instance)
+    - [`monaco instance`](#monaco-instance)
+      - [`onBeforeMount` & `onMount` 事件](#onbeforemount--onmount-事件)
+      - [`useMonaco` hook](#usemonaco-hook)
+      - [`loader` 加载](#loader-加载)
+  - [CDN](#cdn)
+  - [NPM Package](#npm-package)
+    - [Vite](#vite)
+    - [Rollup](#rollup)
+    - [Webpack](#webpack)
+  - [Props & Events & slots](#props--events--slots)
+  - [License](#license)
+
 ## Installation
 
 ```bash
