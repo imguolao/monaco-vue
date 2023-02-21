@@ -10,11 +10,4 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
-  resolve: {
-    alias: {
-      '@hooks': resolve(__dirname, '../src/hooks'),
-      '@components': resolve(__dirname, '../src/components'),
-      '@utils': resolve(__dirname, '../src/utils'),
-    },
-  },
 })
