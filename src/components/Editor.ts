@@ -1,8 +1,7 @@
-import type { ShallowRef } from 'vue'
-import type { EditorProps } from './types'
-import type { Nullable, MonacoEditor } from '../../types'
-
 import {
+  type SetupContext,
+  type PropType,
+  type ShallowRef,
   defineComponent,
   nextTick,
   onMounted,
@@ -11,27 +10,114 @@ import {
   shallowRef,
   ref,
   watch,
-} from 'vue'
+  h,
+} from 'vue-demi'
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
-import { useMonaco } from '../../hooks'
-import { editorProps } from './types'
-import { getOrCreateModel, isUndefined } from '../../utils'
-import MonacoContainer from '../monacoContainer'
+import { type Nullable, type MonacoEditor } from '../types'
+import { useMonaco, useContainer } from '../hooks'
+import { getOrCreateModel, isUndefined, defaultSlotHelper } from '../utils'
+
+export interface EditorProps {
+  defaultValue?: string
+  defaultPath?: string
+  defaultLanguage?: string
+  value?: string
+  language?: string
+  path?: string
+
+  /* === */
+
+  theme: 'light' | string
+  line?: number
+  options: monacoEditor.editor.IStandaloneEditorConstructionOptions
+  overrideServices: monacoEditor.editor.IEditorOverrideServices
+  saveViewState: boolean
+
+  /* === */
+
+  width: number | string
+  height: number | string
+  className?: string
+}
+
+export interface VueMonacoEditorEmitsOptions {
+  'update:value': (value: string | undefined) => void
+  beforeMount: (monaco: MonacoEditor) => void
+  mount: (
+    editor: monacoEditor.editor.IStandaloneCodeEditor,
+    monaco: MonacoEditor,
+  ) => void
+  change: (
+    value: string | undefined,
+    event: monacoEditor.editor.IModelContentChangedEvent,
+  ) => void
+  validate: (markers: monacoEditor.editor.IMarker[]) => void
+}
+
+const loadingStyle = {
+  display: 'flex',
+  height: '100%',
+  width: '100%',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
 
 export default defineComponent({
-  props: editorProps,
-  setup(props, { slots }) {
+  name: 'VueMonacoEditor',
+  props: {
+    defaultValue: String,
+    defaultPath: String,
+    defaultLanguage: String,
+    value: String,
+    language: String,
+    path: String,
+
+    /* === */
+
+    theme: {
+      type: String,
+      default: 'light',
+    },
+    line: Number,
+    options: {
+      type: Object as PropType<monacoEditor.editor.IStandaloneEditorConstructionOptions>,
+      default: () => ({}),
+    },
+    overrideServices: {
+      type: Object as PropType<monacoEditor.editor.IEditorOverrideServices>,
+      default: () => ({}),
+    },
+    saveViewState: {
+      type: Boolean,
+      default: true,
+    },
+
+    /* === */
+
+    width: {
+      type: [Number, String] as PropType<number | string>,
+      default: '100%',
+    },
+    height: {
+      type: [Number, String] as PropType<number | string>,
+      default: '100%',
+    },
+    className: String,
+  },
+  emits: ['update:value', 'beforeMount', 'mount', 'change', 'validate'],
+  setup(props, ctx: SetupContext<VueMonacoEditorEmitsOptions>) {
     const viewStates = new Map<
       string | undefined,
       Nullable<monacoEditor.editor.ICodeEditorViewState>
     >()
     const containerRef = shallowRef<Nullable<HTMLElement>>(null)
-    const setContainerRef = (el: Nullable<HTMLElement>) =>
-      (containerRef.value = el)
+    // const setContainerRef = (el: Nullable<HTMLElement>) =>
+    //   (containerRef.value = el)
     const { monacoRef, unload } = useMonaco()
-    const { editorRef } = useEditor(props, monacoRef, containerRef)
-    const { disposeValidator } = useValidator(props, monacoRef, editorRef)
+    const { editorRef } = useEditor(ctx, props, monacoRef, containerRef)
+    const { disposeValidator } = useValidator(ctx, props, monacoRef, editorRef)
     const isEditorReady = computed(() => !!monacoRef.value && !!editorRef.value)
+    const { wrapperStyle, containerStyle } = useContainer(props, isEditorReady)
 
     onUnmounted(() => {
       disposeValidator.value?.()
@@ -105,20 +191,50 @@ export default defineComponent({
       },
     )
 
-    return () => (
-      <MonacoContainer
-        setContainerRef={setContainerRef}
-        width={props.width}
-        height={props.height}
-        isEditorReady={isEditorReady.value}
-      >
-        {slots.default?.() ?? 'loading...'}
-      </MonacoContainer>
+    return {
+      containerRef,
+      isEditorReady,
+      wrapperStyle,
+      containerStyle,
+    }
+  },
+  render() {
+    const {
+      $slots,
+      isEditorReady,
+      wrapperStyle,
+      containerStyle,
+
+      // TODO: need remove, add `@deprecated` flag
+      className,
+    } = this
+
+    return h(
+      'div',
+      {
+        style: wrapperStyle,
+      },
+      [
+        !isEditorReady &&
+          h(
+            'div',
+            {
+              style: loadingStyle,
+            },
+            defaultSlotHelper($slots.default),
+          ),
+        h('div', {
+          ref: 'containerRef',
+          style: containerStyle,
+          class: className,
+        }),
+      ],
     )
   },
 })
 
 function useEditor(
+  { emit }: SetupContext<VueMonacoEditorEmitsOptions>,
   props: EditorProps,
   monacoRef: ShallowRef<Nullable<MonacoEditor>>,
   containerRef: ShallowRef<Nullable<HTMLElement>>,
@@ -145,7 +261,8 @@ function useEditor(
     }
 
     // editor before mount
-    props.onBeforeMount?.(monacoRef.value)
+    // props.onBeforeMount?.(monacoRef.value)
+    emit('beforeMount', monacoRef.value)
 
     const autoCreatedModelPath = props.path || props.defaultPath
     const defaultModel = getOrCreateModel(
@@ -172,19 +289,23 @@ function useEditor(
     editorRef.value?.onDidChangeModelContent(event => {
       const value = editorRef.value!.getValue()
       if (value !== props.value) {
-        props['onUpdate:value']?.(value)
-        props.onChange?.(value, event)
+        // props['onUpdate:value']?.(value)
+        emit('update:value', value)
+        // props.onChange?.(value, event)
+        emit('change', value, event)
       }
     })
 
     // editor mount
-    props.onMount?.(editorRef.value, monacoRef.value)
+    // props.onMount?.(editorRef.value, monacoRef.value)
+    emit('mount', editorRef.value, monacoRef.value)
   }
 
   return { editorRef }
 }
 
 function useValidator(
+  { emit }: SetupContext<VueMonacoEditorEmitsOptions>,
   props: EditorProps,
   monacoRef: ShallowRef<Nullable<MonacoEditor>>,
   editorRef: ShallowRef<Nullable<monacoEditor.editor.IStandaloneCodeEditor>>,
@@ -205,7 +326,8 @@ function useValidator(
               const markers = monacoRef.value!.editor.getModelMarkers({
                 resource: editorUri,
               })
-              props.onValidate?.(markers)
+              // props.onValidate?.(markers)
+              emit('validate', markers)
             }
           }
         },

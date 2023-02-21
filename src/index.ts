@@ -1,10 +1,8 @@
 import loader from '@monaco-editor/loader'
-import Editor from './components/editor'
-import MonacoContainer from './components/monacoContainer'
+import Editor from './components/Editor'
 import { useMonaco } from './hooks'
 
-export type { MonacoContainerProps } from './components/monacoContainer'
-export type { EditorProps } from './components/editor'
+export type { EditorProps } from './components/Editor'
 
-export { MonacoContainer, loader, useMonaco }
+export { loader, useMonaco }
 export default Editor

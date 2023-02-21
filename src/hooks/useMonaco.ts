@@ -1,8 +1,8 @@
 import type { Nullable, MonacoEditor } from '../types'
-import { shallowRef } from 'vue'
+import { shallowRef } from 'vue-demi'
 import loader from '@monaco-editor/loader'
 
-function useMonaco() {
+export function useMonaco() {
   const monacoRef = shallowRef<Nullable<MonacoEditor>>(null)
 
   // monaco mount
@@ -10,7 +10,7 @@ function useMonaco() {
   const unload = () => monacoLoader.cancel()
 
   monacoLoader
-    .then(monacoInstance => monacoRef.value = monacoInstance)
+    .then(monacoInstance => (monacoRef.value = monacoInstance))
     .catch(error => {
       if (error?.type !== 'cancelation') {
         console.error('Monaco initialization error:', error)
@@ -22,5 +22,3 @@ function useMonaco() {
     unload,
   }
 }
-
-export default useMonaco

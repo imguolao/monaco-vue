@@ -28,9 +28,10 @@ const commonPlugins = [
   }),
 ]
 
-const external = ['@monaco-editor/loader', 'vue', /node_modules/]
+const external = ['@monaco-editor/loader', 'vue', 'vue-demi', /node_modules/]
 const globalsForUMD = {
   '@monaco-editor/loader': 'monaco_loader',
+  'vue-demi': 'VueDemi',
   vue: 'Vue',
 }
 

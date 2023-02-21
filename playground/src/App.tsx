@@ -1,5 +1,7 @@
 import { type Ref, defineComponent, ref, computed } from 'vue'
-import Editor, { loader } from '../../src'
+// import Editor, { loader } from '../../src'
+import { loader } from '../../src'
+import Editor from '../../src/components/Editor'
 import files from './files'
 
 import * as monaco from 'monaco-editor'
@@ -56,8 +58,8 @@ function renderButtonGroup(fileName: Ref<string>) {
   return (
     Object.keys(files).map(key => {
       return (
-        <button 
-          disabled={fileName.value === key} 
+        <button
+          disabled={fileName.value === key}
           onClick={() => (fileName.value = key)}
         >
           {key}
