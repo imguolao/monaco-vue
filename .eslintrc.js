@@ -33,5 +33,5 @@ module.exports = {
     'eol-last': ['error', 'always'],
     'comma-dangle': ['error', 'always-multiline'],
   },
-  ignorePatterns: ['lib', 'playground'],
+  ignorePatterns: ['lib', 'playground', 'vue-test'],
 }
