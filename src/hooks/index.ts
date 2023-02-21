@@ -1,3 +1,2 @@
-import useMonaco from './useMonaco'
-
-export { useMonaco }
+export * from './useContiner'
+export * from './useMonaco'
