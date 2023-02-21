@@ -1,7 +1,6 @@
 import { type Ref, defineComponent, ref, computed } from 'vue'
 // import Editor, { loader } from '../../src'
-import { loader } from '../../src'
-import Editor from '../../src/components/Editor'
+import Editor, { loader } from '../../src'
 import files from './files'
 
 import * as monaco from 'monaco-editor'

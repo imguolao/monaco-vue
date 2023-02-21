@@ -14,11 +14,10 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
+    "types": ["vite/client"]
   },
   "include": [
-    "./src/**/*",
-    "./playground/**/*",
-    "./website/**/*"
+    "src"
   ],
   "exclude": ["node_modules", "lib", "dist"]
 }
