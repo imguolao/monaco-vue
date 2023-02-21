@@ -2,19 +2,32 @@ import type { ShallowRef } from 'vue'
 import type { EditorProps } from './types'
 import type { Nullable, MonacoEditor } from '../../types'
 
-import { defineComponent, nextTick, onMounted, onUnmounted, computed, shallowRef, ref, watch } from 'vue'
+import {
+  defineComponent,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  computed,
+  shallowRef,
+  ref,
+  watch,
+} from 'vue'
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
-import { useMonaco } from '@hooks'
+import { useMonaco } from '../../hooks'
 import { editorProps } from './types'
-import { getOrCreateModel, isUndefined } from '@utils'
+import { getOrCreateModel, isUndefined } from '../../utils'
 import MonacoContainer from '../monacoContainer'
 
 export default defineComponent({
   props: editorProps,
   setup(props, { slots }) {
-    const viewStates = new Map<string | undefined, Nullable<monacoEditor.editor.ICodeEditorViewState>>()
+    const viewStates = new Map<
+      string | undefined,
+      Nullable<monacoEditor.editor.ICodeEditorViewState>
+    >()
     const containerRef = shallowRef<Nullable<HTMLElement>>(null)
-    const setContainerRef = (el: Nullable<HTMLElement>) => (containerRef.value = el)
+    const setContainerRef = (el: Nullable<HTMLElement>) =>
+      (containerRef.value = el)
     const { monacoRef, unload } = useMonaco()
     const { editorRef } = useEditor(props, monacoRef, containerRef)
     const { disposeValidator } = useValidator(props, monacoRef, editorRef)
@@ -48,9 +61,11 @@ export default defineComponent({
         )
 
         if (model !== editorRef.value!.getModel()) {
-          props.saveViewState && viewStates.set(oldPath, editorRef.value!.saveViewState())
+          props.saveViewState &&
+            viewStates.set(oldPath, editorRef.value!.saveViewState())
           editorRef.value!.setModel(model)
-          props.saveViewState && editorRef.value!.restoreViewState(viewStates.get(newPath)!)
+          props.saveViewState &&
+            editorRef.value!.restoreViewState(viewStates.get(newPath)!)
         }
       },
     )
@@ -72,7 +87,11 @@ export default defineComponent({
     watch(
       () => props.language,
       language =>
-        isEditorReady.value && monacoRef.value!.editor.setModelLanguage(editorRef.value!.getModel()!, language!),
+        isEditorReady.value &&
+        monacoRef.value!.editor.setModelLanguage(
+          editorRef.value!.getModel()!,
+          language!,
+        ),
     )
 
     // line
@@ -104,7 +123,8 @@ function useEditor(
   monacoRef: ShallowRef<Nullable<MonacoEditor>>,
   containerRef: ShallowRef<Nullable<HTMLElement>>,
 ) {
-  const editorRef = shallowRef<Nullable<monacoEditor.editor.IStandaloneCodeEditor>>(null)
+  const editorRef =
+    shallowRef<Nullable<monacoEditor.editor.IStandaloneCodeEditor>>(null)
 
   onMounted(() => {
     const stop = watch(
@@ -174,16 +194,22 @@ function useValidator(
   const stop = watch([monacoRef, editorRef], () => {
     if (monacoRef.value && editorRef.value) {
       nextTick(() => stop())
-      const changeMarkersListener = monacoRef.value.editor.onDidChangeMarkers(uris => {
-        const editorUri = editorRef.value?.getModel()?.uri
-        if (editorUri) {
-          const currentEditorHasMarkerChanges = uris.find(uri => uri.path === editorUri.path)
-          if (currentEditorHasMarkerChanges) {
-            const markers = monacoRef.value!.editor.getModelMarkers({ resource: editorUri })
-            props.onValidate?.(markers)
+      const changeMarkersListener = monacoRef.value.editor.onDidChangeMarkers(
+        uris => {
+          const editorUri = editorRef.value?.getModel()?.uri
+          if (editorUri) {
+            const currentEditorHasMarkerChanges = uris.find(
+              uri => uri.path === editorUri.path,
+            )
+            if (currentEditorHasMarkerChanges) {
+              const markers = monacoRef.value!.editor.getModelMarkers({
+                resource: editorUri,
+              })
+              props.onValidate?.(markers)
+            }
           }
-        }
-      })
+        },
+      )
 
       disposeValidator.value = () => changeMarkersListener?.dispose()
     }

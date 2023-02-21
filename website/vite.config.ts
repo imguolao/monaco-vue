@@ -7,29 +7,20 @@ import pkg from '../package.json';
 const rootDir = resolve(__dirname, 'public')
 const outDir = resolve(rootDir, '../dist')
 
-export default defineConfig(() => {
-  return {
-    base: './',
-    root: rootDir,
-    define: {
-      'process.env': {
-        __VERSION__: pkg.version,
-      },
+export default defineConfig({
+  base: './',
+  root: rootDir,
+  define: {
+    'process.env': {
+      __VERSION__: pkg.version,
     },
-    build: {
-      outDir,
-      emptyOutDir: true,
-    },
-    plugins: [
-      vue(),
-      vueJsx(),
-    ],
-    resolve: {
-      alias: {
-        '@hooks': resolve(__dirname, '../src/hooks'),
-        '@components': resolve(__dirname, '../src/components'),
-        '@utils': resolve(__dirname, '../src/utils'),
-      },
-    },
-  };
+  },
+  build: {
+    outDir,
+    emptyOutDir: true,
+  },
+  plugins: [
+    vue(),
+    vueJsx(),
+  ],
 })

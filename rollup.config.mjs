@@ -1,18 +1,14 @@
-import { resolve } from 'path'
+// import { resolve, dirname } from 'node:path'
+// import { fileURLToPath } from 'node:url'
 import nodeResolve from '@rollup/plugin-node-resolve'
-import alias from '@rollup/plugin-alias'
 import babel from '@rollup/plugin-babel'
 import dts from 'rollup-plugin-dts'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
+
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = dirname(__filename)
 
 const commonPlugins = [
-  alias({
-    entries: [
-      { find: '@hooks', replacement: resolve(__dirname, './src/hooks') },
-      { find: '@components', replacement: resolve(__dirname, './src/components') },
-      { find: '@utils', replacement: resolve(__dirname, './src/utils') },
-    ],
-  }),
   nodeResolve({
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   }),

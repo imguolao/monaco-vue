@@ -11,15 +11,15 @@ export default defineComponent({
       const { width, height } = props
       return normalizeStyle({
         ...styles.wrapper,
-        width, 
+        width,
         height,
       })
     })
 
     const containerStyle = computed(() => {
-      return normalizeStyle({ 
-        ...styles.fullWidth, 
-        ...(!props.isEditorReady && styles.hide)
+      return normalizeStyle({
+        ...styles.fullWidth,
+        ...(!props.isEditorReady && styles.hide),
       })
     })
 
@@ -33,5 +33,5 @@ export default defineComponent({
         />
       </div>
     )
-  }
+  },
 })
