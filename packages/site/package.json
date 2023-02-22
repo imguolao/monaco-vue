@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "build:gh-pages": "vite build --base=/monaco-vue/"
   },
   "repository": {
     "type": "git",
