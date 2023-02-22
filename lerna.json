@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "useWorkspaces": true,
+  "npmClient": "pnpm",
+  "version": "0.0.0",
+  "command": {
+    "publish": {
+      "registry": "https://github.com/imguolao/monaco-vue"
+    },
+    "version": {
+      "allowBranch": ["main"],
+      "forcePublish": true,
+      "conventionalCommits": true,
+      "conventionalGraduate": ["@guolao/vue-monaco-editor"],
+      "message": "chore(release): publish %s"
+    }
+  }
+}

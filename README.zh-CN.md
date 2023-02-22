@@ -2,9 +2,9 @@
 
 不需要给 `webpack` (or `rollup`, `vite`) 等打包工具配置插件，就可以在 [Vue](https://vuejs.org/) 中使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)（从 [CDN](#cdn) 加载）。
 
-[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) 
+[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
 
-中文文档 | [English Documents](https://github.com/imguolao/monaco-vue/blob/main/README.md)
+中文 | [English Documents](https://github.com/imguolao/monaco-vue/blob/main/README.md)
 
 查看 [Demo](https://imguolao.github.io/monaco-vue/).
 
@@ -55,7 +55,7 @@ import Editor from '@guolao/vue-monaco-editor'
 
 export default defineComponent(() => {
   return (
-    <Editor 
+    <Editor
       height="80vh"
       theme='vs-dark'
       defaultLanguage="javascript"
@@ -66,7 +66,7 @@ export default defineComponent(() => {
 })
 ```
 
-### `editor instance` 
+### `editor instance`
 
 编辑器实例可以通过 `onMount` 事件获取。
 
@@ -83,7 +83,7 @@ export default defineComponent(() => {
   }
 
   return (
-    <Editor 
+    <Editor
       height="80vh"
       theme='vs-dark'
       defaultLanguage="javascript"
@@ -118,7 +118,7 @@ export default defineComponent(() => {
   }
 
   return (
-    <Editor 
+    <Editor
       height="80vh"
       theme='vs-dark'
       defaultLanguage="javascript"
@@ -144,14 +144,14 @@ import Editor, { useMonaco } from '@guolao/vue-monaco-editor'
 
 export default defineComponent(() => {
   const { monacoRef, unload } = useMonaco()
-  
+
   /*
     当组件被卸载时, 如果 monaco 实例没有加载完, 你需要手动取消加载。
   */
   onUnmounted(() => !monacoRef.value && unload())
 
   return (
-    <Editor 
+    <Editor
       height="80vh"
       theme='vs-dark'
       defaultLanguage="javascript"
@@ -171,9 +171,9 @@ export default defineComponent(() => {
 import { loader } from "@guolao/vue-monaco-editor"
 
 // CDN 加载
-loader.config({ 
-  paths: { 
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' 
+loader.config({
+  paths: {
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs'
   },
 })
 
@@ -197,9 +197,9 @@ loader.config({
 `vue-monaco-editor` 基于 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 从 CDN 加载文件，默认 CDN 为 [jsdelivr](https://cdn.jsdelivr.net)。
 
 ```js
-loader.config({ 
-  paths: { 
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' 
+loader.config({
+  paths: {
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs'
   },
 })
 ```

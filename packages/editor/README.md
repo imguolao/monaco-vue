@@ -1,10 +1,10 @@
-# monaco-vue
+# monaco-vue 
 
 Use [monaco-editor](https://microsoft.github.io/monaco-editor/) loaded from [CDN](#cdn) in [Vue](https://vuejs.org/), no need to configure plugins in `webpack` (or `rollup`, ` vite`) and other packaging tools.
 
-[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
+[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) 
 
-English | [中文](https://github.com/imguolao/monaco-vue/blob/main/README.zh-CN.md)
+English Documents | [中文文档](https://github.com/imguolao/monaco-vue/blob/main/README.zh-CN.md)
 
 View [Demo](https://imguolao.github.io/monaco-vue/).
 
@@ -12,14 +12,13 @@ If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) a
 
 ## Contents
 
-- [monaco-vue](#monaco-vue)
   - [Contents](#contents)
   - [Installation](#installation)
   - [Usage](#usage)
     - [`Editor` Component](#editor-component)
     - [`editor instance`](#editor-instance)
     - [`monaco instance`](#monaco-instance)
-      - [`onBeforeMount` \& `onMount` Event](#onbeforemount--onmount-event)
+      - [`onBeforeMount` & `onMount` Event](#onbeforemount--onmount-event)
       - [`useMonaco` hook](#usemonaco-hook)
       - [Use `loader`](#use-loader)
   - [CDN](#cdn)
@@ -27,7 +26,7 @@ If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) a
     - [Vite](#vite)
     - [Rollup](#rollup)
     - [Webpack](#webpack)
-  - [Props \& Events \& slots](#props--events--slots)
+  - [Props & Events & slots](#props--events--slots)
   - [License](#license)
 
 ## Installation
@@ -57,7 +56,7 @@ import Editor from '@guolao/vue-monaco-editor'
 
 export default defineComponent(() => {
   return (
-    <Editor
+    <Editor 
       height="80vh"
       theme='vs-dark'
       defaultLanguage="javascript"
@@ -68,7 +67,7 @@ export default defineComponent(() => {
 })
 ```
 
-### `editor instance`
+### `editor instance` 
 
 Get the editor instance from the `onMount` event.
 
@@ -85,7 +84,7 @@ export default defineComponent(() => {
   }
 
   return (
-    <Editor
+    <Editor 
       height="80vh"
       theme='vs-dark'
       defaultLanguage="javascript"
@@ -120,7 +119,7 @@ export default defineComponent(() => {
   }
 
   return (
-    <Editor
+    <Editor 
       height="80vh"
       theme='vs-dark'
       defaultLanguage="javascript"
@@ -146,7 +145,7 @@ import Editor, { useMonaco } from '@guolao/vue-monaco-editor'
 
 export default defineComponent(() => {
   const { monacoRef, unload } = useMonaco()
-
+  
   /*
     When the component will be unmount,
     If the monaco instance is not successfully loaded,
@@ -155,7 +154,7 @@ export default defineComponent(() => {
   onUnmounted(() => !monacoRef.value && unload())
 
   return (
-    <Editor
+    <Editor 
       height="80vh"
       theme='vs-dark'
       defaultLanguage="javascript"
@@ -175,9 +174,9 @@ The configuration for [@monaco-editor/loader](https://github.com/suren-atoyan/mo
 import { loader } from "@guolao/vue-monaco-editor"
 
 // loaded from CDN
-loader.config({
-  paths: {
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs'
+loader.config({ 
+  paths: { 
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' 
   },
 })
 
@@ -201,9 +200,9 @@ loader.config({
 `vue-monaco-editor` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load the [monaco-editor](https://microsoft.github.io/monaco-editor/) from the CDN, the default CDN is [jsdelivr](https://cdn.jsdelivr.net).
 
 ```js
-loader.config({
-  paths: {
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs'
+loader.config({ 
+  paths: { 
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' 
   },
 })
 ```

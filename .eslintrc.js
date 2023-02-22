@@ -23,7 +23,7 @@ module.exports = {
     // vue
     'vue/no-unused-vars': 'error',
     'vue/require-default-prop': 'off',
-    
+
     // ts
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-non-null-assertion': 'off',
@@ -33,5 +33,4 @@ module.exports = {
     'eol-last': ['error', 'always'],
     'comma-dangle': ['error', 'always-multiline'],
   },
-  ignorePatterns: ['lib', 'playground', 'vue-test'],
 }
