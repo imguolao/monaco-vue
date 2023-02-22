@@ -221,10 +221,11 @@ export default defineComponent({
             {
               style: loadingStyle,
             },
-            defaultSlotHelper($slots.default),
+            $slots.default ? defaultSlotHelper($slots.default) : 'loading...',
           ),
         h('div', {
           ref: 'containerRef',
+          key: 'monaco_editor_container',
           style: containerStyle,
           class: className,
         }),
