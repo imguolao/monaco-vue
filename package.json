@@ -9,6 +9,7 @@
     "build:playground": "lerna run build --scope playground",
     "start:site": "lerna run start --scope site",
     "build:site": "lerna run build --scope site",
+    "test:vue-2.7.14": "lerna run start --scope vue-test-2.7.14",
     "eslint-fix": "eslint --fix ./packages/editor/src  --ext .vue,.js,.ts,.tsx",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
