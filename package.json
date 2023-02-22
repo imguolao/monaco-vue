@@ -4,6 +4,7 @@
   "description": "Monaco Editor for Vue - use the monaco-editor in any Vue 2 & 3 application without needing to use webpack (or rollup/vite) configuration files / plugins",
   "scripts": {
     "build": "lerna run build --scope @guolao/vue-monaco-editor",
+    "build:gh-pages": "lerna run build:gh-pages --scope site",
     "start:playground": "lerna run start --scope playground",
     "build:playground": "lerna run build --scope playground",
     "start:site": "lerna run start --scope site",
