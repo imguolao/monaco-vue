@@ -1,0 +1,5 @@
+node_modules
+
+!/packages/editor/src
+!/packages/playground/src
+!/packages/site/src
