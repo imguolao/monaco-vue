@@ -106,7 +106,7 @@ importers:
       less: ^4.1.3
       postcss: ^8.4.21
       vite: ^4.1.1
-      vite-plugin-html: ^3.2.0
+      vite-plugin-virtual-html: ^1.0.1
       vue: ^3.2.47
       vue-demi: ^0.13.11
     dependencies:
@@ -119,7 +119,7 @@ importers:
       less: 4.1.3
       postcss: 8.4.21
       vite: 4.1.4_less@4.1.3
-      vite-plugin-html: 3.2.0_vite@4.1.4
+      vite-plugin-virtual-html: 1.0.1
 
   packages/vue-test-2.6.14:
     specifiers:
@@ -7801,6 +7801,15 @@ packages:
       node-html-parser: 5.4.2
       pathe: 0.2.0
       vite: 4.1.4_less@4.1.3
+    dev: true
+
+  /vite-plugin-virtual-html/1.0.1:
+    resolution: {integrity: sha512-/IVeXxwuklAj0NHT1xitXG0AkYYSr7IudBclQhH1GJL6DyzLWCOjR1Alay6B3CUwYYCXLB01M9k6Hu7z2R4KgQ==}
+    dependencies:
+      debug: 4.3.4
+      fast-glob: 3.2.12
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /vite-plugin-vue2/2.0.3_2yjox5hkgu6uxsxtsjihrtvijq:
