@@ -21,7 +21,7 @@
   "homepage": "https://imguolao.github.io/monaco-vue",
   "license": "MIT",
   "dependencies": {
-    "@guolao/vue-monaco-editor": "workspace:^0.0.5",
+    "@guolao/vue-monaco-editor": "workspace:^1.0.0",
     "vue": "^3.2.47",
     "vue-demi": "^0.13.11"
   },
