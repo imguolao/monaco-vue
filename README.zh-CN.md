@@ -60,7 +60,7 @@ const handleChange = console.log
 | defaultValue | `string` |  | 当前编辑器模型的默认值 |  |
 | defaultLanguage | `string` |  | 当前编辑器模型的默认语言 | `monaco-editor` 支持的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | defaultPath | `string` |  | 当前编辑器模型的默认路径 | `monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))` |
-| value | `string` |  | 当前编辑器模型的值 | `v-model:value` |
+| value | `string` |  | 当前编辑器模型的值，可以使用 `v-model:value` | `v-model:value` |
 | language | `string` |  | 当前编辑器模型的语言 | `monaco-editor` 支持的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | path | `string` |  | 当前编辑器模型的路径 |  |
 | theme | `light` \| `vs-dark` | `light` | `monaco-editor` 的主题 | `monaco.editor.defineTheme(...)` |
@@ -71,10 +71,9 @@ const handleChange = console.log
 | width | `number` \| `string` | `100%` | 容器宽度 |  |
 | height | `number` \| `string` | `100%` | 容器高度 |  |
 | className | `string` |  | 容器 class |  |
-| `onUpdate:value` | `(value: string \| undefined) => void` |  | 编辑改变值后执行 | 可直接使用 `v-model` |
 | onBeforeMount | `(monaco: Monaco) => void` |  | 编辑器实例创建前执行 |  |
 | onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | 编辑器实例创建后执行 |  |
-| onChange | `(value: string \| undefined) => void` |  | 编辑改变值后执行 | `monaco.editor.IModelContentChangedEvent) => void` |
+| onChange | `(value: string \| undefined, monaco.editor.IModelContentChangedEvent) => void) => void` |  | 编辑改变值后执行 |  |
 | onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | 当语法发生错误时执行 | `monaco-editor` 支持语法校验的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | `#defalut` | `slot` | `'loading...'` | 加载状态 | 从 CDN 加载文件需要一段时间，显示加载状态会更为友好 |
 
@@ -109,9 +108,9 @@ onUnmounted(() => !monacoRef.value && unload())
 
 ## CDN
 
-`vue-monaco-editor` 基于 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 从 CDN 加载文件（`loader`的加载过程是异步的），默认 CDN 为 [jsdelivr](https://cdn.jsdelivr.net)。
+`vue-monaco-editor` 基于 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 从 CDN 加载文件（`loader`的加载过程是异步）。
 
-`loader` 的配置是全局的，仅需配置一次即可。
+`loader` 的配置是全局的，仅需配置一次。
 
 ```ts
 import { createApp } from 'vue'
@@ -120,6 +119,7 @@ import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
+    // 默认配置
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs'
   },
 })
