@@ -60,7 +60,7 @@ const handleChange = console.log
 | defaultValue | `string` |  | default value of the current model |  |
 | defaultLanguage | `string` |  | default language of the current model | languages supported by `monaco-editor` [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | defaultPath | `string` |  | default path of the current model | `monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))` |
-| value | `string` |  | value of the current model | `v-model:value` |
+| value | `string` |  | value of the current model, can use `v-model:value` | `v-model:value` |
 | language | `string` |  | language of the current model | languages supported by `monaco-editor` [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | path | `string` |  | path to the current model |  |
 | theme | `light` \| `vs-dark` | `light` | theme of the `monaco-editor` | `monaco.editor.defineTheme(...)` |
@@ -71,10 +71,9 @@ const handleChange = console.log
 | width | `number` \| `string` | `100%` | container width |  |
 | height | `number` \| `string` | `100%` | container height |  |
 | className | `string` |  | container class name |  |
-| `onUpdate:value` | `(value: string \| undefined) => void` |  | execute when  the changed value change | can use `v-model` |
 | onBeforeMount | `(monaco: Monaco) => void` |  | execute before the editor instance is created |  |
 | onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | execute after the editor instance has been created |  |
-| onChange | `(value: string \| undefined) => void` |  | execute when  the changed value change | `monaco.editor.IModelContentChangedEvent) => void` |
+| onChange | `(value: string \| undefined, event: monaco.editor.IModelContentChangedEvent) => void` |  | execute when  the changed value change |  |
 | onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | execute when a syntax error occurs | `monaco-editor` supports syntax-checked languages [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | `#defalut` | `slot` | `'loading...'` | loading status | when loading files from CDN, displaying the loading status will be more friendly |
 
@@ -113,7 +112,7 @@ onUnmounted(() => !monacoRef.value && unload())
 
 ## CDN
 
-`vue-monaco-editor` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load the [monaco-editor](https://microsoft.github.io/monaco-editor/) from the CDN((the loading process of `loader` is asynchronous)), the default CDN is [jsdelivr](https://cdn.jsdelivr.net).
+`vue-monaco-editor` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load the [monaco-editor](https://microsoft.github.io/monaco-editor/) from the CDN(the loading process of `loader` is asynchronous).
 
 The configuration of `loader` is global, only to be configured once.
 
@@ -124,6 +123,7 @@ import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
+    // The default CDN config
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs'
   },
 })
