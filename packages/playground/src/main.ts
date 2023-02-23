@@ -1,4 +1,9 @@
-import { createApp } from "vue";
-import App from "./App";
+import { createApp } from 'vue'
+// import { install } from '@guolao/vue-monaco-editor'
+import App from './App'
 
-createApp(App).mount("#app");
+const app = createApp(App)
+
+// app.use(install)
+
+app.mount('#app')

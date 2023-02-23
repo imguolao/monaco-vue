@@ -1,4 +1,7 @@
-import Vue from "vue";
-import App from "./App.vue";
+import Vue from 'vue'
+import { install } from '@guolao/vue-monaco-editor'
+import App from './App.vue'
 
-new Vue(App).$mount("#app");
+Vue.use(install)
+
+new Vue(App).$mount('#app')
