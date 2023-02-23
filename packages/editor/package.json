@@ -1,7 +1,7 @@
 {
   "name": "@guolao/vue-monaco-editor",
   "version": "0.0.5",
-  "description": "Monaco Editor for Vue 2 & 3 - use the monaco-editor in any Vue application without needing to use webpack (or rollup/vite) configuration files / plugins",
+  "description": "Monaco Editor for Vue 2&3 - use the monaco-editor in any Vue application without needing to use webpack (or rollup/vite) configuration files / plugins",
   "author": {
     "name": "guolao",
     "email": "guolao.mq@foxmail.com"

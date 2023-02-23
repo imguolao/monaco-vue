@@ -1,9 +1,9 @@
 {
   "name": "monaco-vue",
   "private": true,
-  "description": "Monaco Editor for Vue - use the monaco-editor in any Vue 2 & 3 application without needing to use webpack (or rollup/vite) configuration files / plugins",
+  "description": "Monaco Editor for Vue - use the monaco-editor in any Vue 2&3 application without needing to use webpack (or rollup/vite) configuration files / plugins",
   "scripts": {
-    "build": "lerna run build --scope @guolao/vue-monaco-editor",
+    "build": "lerna run build --scope @guolao/vue-monaco-editor && node ./scripts/syncReadme.mjs && git add ./packages/editor/README.md",
     "build:gh-pages": "lerna run build:gh-pages --scope site",
     "start:playground": "lerna run start --scope playground",
     "build:playground": "lerna run build --scope playground",

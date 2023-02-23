@@ -1,5 +1,7 @@
 # monaco-vue
 
+🎉 version `v1` 现在已经支持 vue 2&3 ✌
+
 不需要给 `webpack` (or `rollup`, `vite`) 等打包工具配置插件，就可以在 [Vue](https://vuejs.org/) 中使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)（从 [CDN](#cdn) 加载）。
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
@@ -12,12 +14,14 @@
 
 ## Contents
 
+- [monaco-vue](#monaco-vue)
+  - [Contents](#contents)
   - [Installation](#installation)
   - [Usage](#usage)
     - [`Editor` Component](#editor-component)
     - [`editor instance`](#editor-instance)
     - [`monaco instance`](#monaco-instance)
-      - [`onBeforeMount` & `onMount` 事件](#onbeforemount--onmount-事件)
+      - [`onBeforeMount` \& `onMount` 事件](#onbeforemount--onmount-事件)
       - [`useMonaco` hook](#usemonaco-hook)
       - [`loader` 加载](#loader-加载)
   - [CDN](#cdn)
@@ -25,7 +29,7 @@
     - [Vite](#vite)
     - [Rollup](#rollup)
     - [Webpack](#webpack)
-  - [Props & Events & slots](#props--events--slots)
+  - [Props \& Events \& slots](#props--events--slots)
   - [License](#license)
 
 ## Installation
