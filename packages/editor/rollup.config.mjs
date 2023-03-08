@@ -1,5 +1,5 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
-import babel from '@rollup/plugin-babel'
+import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 import terser from '@rollup/plugin-terser'
 
@@ -7,18 +7,11 @@ const commonPlugins = [
   nodeResolve({
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   }),
-  babel({
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    presets: [
-      [
-        '@babel/preset-env',
-        {
-          targets: ['> 2%, not dead', 'not IE 11'],
-        },
-      ],
-      '@babel/preset-typescript',
-    ],
-    babelHelpers: 'bundled',
+  esbuild({
+    include: /\.[jt]sx?$/,
+    exclude: /node_modules/,
+    sourceMap: false,
+    target: 'es2017',
   }),
 ]
 
