@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/imguolao/monaco-vue/compare/v1.1.1...v1.1.2) (2023-03-24)
+
+### Bug Fixes
+
+- unmounted hook toggle before editor initialization finished ([35acfa1](https://github.com/imguolao/monaco-vue/commit/35acfa1edbf766d1faa646a4e57330d2e1a06b44))
+
 ## [1.1.1](https://github.com/imguolao/monaco-vue/compare/v1.1.0...v1.1.1) (2023-03-08)
 
 **Note:** Version bump only for package monaco-vue

@@ -68,7 +68,7 @@ importers:
 
   packages/playground:
     specifiers:
-      '@guolao/vue-monaco-editor': workspace:^1.1.1
+      '@guolao/vue-monaco-editor': workspace:^1.1.2
       '@vitejs/plugin-vue': ^4.0.0
       '@vitejs/plugin-vue-jsx': ^3.0.0
       less: ^4.1.3
@@ -93,7 +93,7 @@ importers:
 
   packages/site:
     specifiers:
-      '@guolao/vue-monaco-editor': workspace:^1.1.1
+      '@guolao/vue-monaco-editor': workspace:^1.1.2
       '@vitejs/plugin-vue': ^4.0.0
       '@vitejs/plugin-vue-jsx': ^3.0.0
       less: ^4.1.3
