@@ -115,8 +115,12 @@ export default defineComponent({
 
     onUnmounted(() => {
       disposeValidator.value?.()
-      editorRef.value!.getModel()?.dispose()
-      editorRef.value?.dispose() ?? unload()
+      if (editorRef.value) {
+        editorRef.value.getModel()?.dispose()
+        editorRef.value.dispose()
+      } else {
+        unload()
+      }
     })
 
     // value
