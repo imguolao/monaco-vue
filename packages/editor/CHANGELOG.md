@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/imguolao/monaco-vue/compare/v1.1.2...v1.1.3) (2023-03-30)
+
+### Bug Fixes
+
+- updating values error in multiple models ([46728f6](https://github.com/imguolao/monaco-vue/commit/46728f6cf0c53629cee4e3a9702f4fc80cc79df8))
+
 ## [1.1.2](https://github.com/imguolao/monaco-vue/compare/v1.1.1...v1.1.2) (2023-03-24)
 
 ### Bug Fixes
