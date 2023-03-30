@@ -123,16 +123,6 @@ export default defineComponent({
       }
     })
 
-    // value
-    watch(
-      () => props.value,
-      newValue => {
-        if (editorRef.value && editorRef.value.getValue() !== newValue) {
-          editorRef.value.setValue(newValue!)
-        }
-      },
-    )
-
     // path
     watch(
       () => props.path,
@@ -148,6 +138,16 @@ export default defineComponent({
           props.saveViewState && viewStates.set(oldPath, editorRef.value!.saveViewState())
           editorRef.value!.setModel(model)
           props.saveViewState && editorRef.value!.restoreViewState(viewStates.get(newPath)!)
+        }
+      },
+    )
+
+    // value
+    watch(
+      () => props.value,
+      newValue => {
+        if (editorRef.value && editorRef.value.getValue() !== newValue) {
+          editorRef.value.setValue(newValue!)
         }
       },
     )
