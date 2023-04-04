@@ -87,8 +87,8 @@ const handleChange = console.log
 </template>
 
 <script lang="ts" setup>
-import { onUnmounted } from 'vue'
-import { useMonaco, watchEffect, nextTick } from '@guolao/vue-monaco-editor'
+import { ref, onUnmounted, watchEffect, nextTick } from 'vue'
+import { useMonaco } from '@guolao/vue-monaco-editor'
 
 const containerRef = ref()
 const { monacoRef, unload } = useMonaco()
