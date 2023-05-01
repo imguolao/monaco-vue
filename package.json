@@ -31,7 +31,7 @@
   "homepage": "https://imguolao.github.io/monaco-vue",
   "license": "MIT",
   "engines": {
-    "node": ">16.0.0"
+    "node": ">18.0.0"
   },
   "lint-staged": {
     "packages/**/*.{js,ts,tsx}": [

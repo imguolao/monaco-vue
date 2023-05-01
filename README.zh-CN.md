@@ -6,7 +6,7 @@
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
 
-中文 | [English Documents](https://github.com/imguolao/monaco-vue/blob/main/README.md)
+简体中文 | [English](https://github.com/imguolao/monaco-vue/blob/main/README.md)
 
 查看 [Demo](https://imguolao.github.io/monaco-vue/).
 
@@ -29,27 +29,32 @@ npm i @guolao/vue-monaco-editor @vue/composition-api
 ## Usage
 
 ```ts
-import { createApp } from 'vue'
-import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
-
-const app = createApp(App)
-app.use(VueMonacoEditorPlugin)
-```
-
-```vue
 <template>
   <vue-monaco-editor
     v-model:value="code"
     theme="vs-dark"
-    @change="handleChange"
+    :options="MONACO_EDITOR_OPTIONS"
+    @mount=“handleMount”
   />
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
+
+const MONACO_EDITOR_OPTIONS = {
+  automaticLayout: true, 
+  formatOnType: true, 
+  formatOnPaste: true,
+}
 
 const code = ref('// some code...')
-const handleChange = console.log
+const editorRef = shallowRef()
+const handleMount = editor => (editorRef.value = editor)
+
+// your action
+function formatCode() {
+  editorRef.value?.getAction('editor.action.formatDocument').run()
+}
 </script>
 ```
 

@@ -6,7 +6,7 @@ Use [monaco-editor](https://microsoft.github.io/monaco-editor/) loaded from [CDN
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
 
-English | [中文](https://github.com/imguolao/monaco-vue/blob/main/README.zh-CN.md)
+English | [简体中文](https://github.com/imguolao/monaco-vue/blob/main/README.zh-CN.md)
 
 View [Demo](https://imguolao.github.io/monaco-vue/).
 
@@ -29,27 +29,32 @@ Of course, you can also use [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/
 ## Usage
 
 ```ts
-import { createApp } from 'vue'
-import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
-
-const app = createApp(App)
-app.use(VueMonacoEditorPlugin)
-```
-
-```vue
 <template>
   <vue-monaco-editor
     v-model:value="code"
     theme="vs-dark"
-    @change="handleChange"
+    :options="MONACO_EDITOR_OPTIONS"
+    @mount=“handleMount”
   />
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
+
+const MONACO_EDITOR_OPTIONS = {
+  automaticLayout: true, 
+  formatOnType: true, 
+  formatOnPaste: true,
+}
 
 const code = ref('// some code...')
-const handleChange = console.log
+const editorRef = shallowRef()
+const handleMount = editor => (editorRef.value = editor)
+
+// your action
+function formatCode() {
+  editorRef.value?.getAction('editor.action.formatDocument').run()
+}
 </script>
 ```
 
