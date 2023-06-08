@@ -33,7 +33,7 @@ export default defineComponent({
             rel="noopener noreferrer"
             href="https://microsoft.github.io/monaco-editor"
           >
-            Monaco Ediotor Documentation
+            Monaco Editor Documentation
           </a>
         </div>
       </header>
