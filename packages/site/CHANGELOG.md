@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/imguolao/monaco-vue/compare/v1.1.3...v1.1.4) (2023-07-31)
+
+### Bug Fixes
+
+- typo on ediotor -> editor ([f7e5d69](https://github.com/imguolao/monaco-vue/commit/f7e5d69fc9bb0b6a3f77d34687cbd65c8a8ea126))
+
 ## [1.1.3](https://github.com/imguolao/monaco-vue/compare/v1.1.2...v1.1.3) (2023-03-30)
 
 **Note:** Version bump only for package site
