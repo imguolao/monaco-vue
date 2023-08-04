@@ -28,6 +28,23 @@ Of course, you can also use [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/
 
 ## Usage
 
+Register the component.
+
+```ts
+import { createApp } from 'vue'
+import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
+
+const app = createApp(App)
+app.use(VueMonacoEditorPlugin, {
+  paths: {
+    // The default CDN config
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.36.0/min/vs'
+  },
+})
+```
+
+And then, use it.
+
 ```ts
 <template>
   <vue-monaco-editor
@@ -42,8 +59,8 @@ Of course, you can also use [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/
 import { ref, shallowRef } from 'vue'
 
 const MONACO_EDITOR_OPTIONS = {
-  automaticLayout: true, 
-  formatOnType: true, 
+  automaticLayout: true,
+  formatOnType: true,
   formatOnPaste: true,
 }
 
