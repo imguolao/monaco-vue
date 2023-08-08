@@ -34,7 +34,7 @@ npm i @guolao/vue-monaco-editor @vue/composition-api
     v-model:value="code"
     theme="vs-dark"
     :options="MONACO_EDITOR_OPTIONS"
-    @mount=“handleMount”
+    @mount="handleMount"
   />
 </template>
 
@@ -80,7 +80,7 @@ function formatCode() {
 | onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | 编辑器实例创建后执行 |  |
 | onChange | `(value: string \| undefined, monaco.editor.IModelContentChangedEvent) => void) => void` |  | 编辑改变值后执行 |  |
 | onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | 当语法发生错误时执行 | `monaco-editor` 支持语法校验的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
-| `#defalut` | `slot` | `'loading...'` | 加载状态 | 从 CDN 加载文件需要一段时间，显示加载状态会更为友好 |
+| `#default` | `slot` | `'loading...'` | 加载状态 | 从 CDN 加载文件需要一段时间，显示加载状态会更为友好 |
 
 ## Hooks
 

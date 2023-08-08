@@ -1,6 +1,6 @@
 # monaco-vue
 
-🎉 version `v1` suport vue 2&3 now ✌
+🎉 version `v1` support vue 2&3 now ✌
 
 Use [monaco-editor](https://microsoft.github.io/monaco-editor/) loaded from [CDN](#cdn) in [Vue 2&3](https://vuejs.org/), no need to configure plugins in `webpack` (or `rollup`, ` vite`) and other packaging tools.
 
@@ -97,7 +97,7 @@ function formatCode() {
 | onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | execute after the editor instance has been created |  |
 | onChange | `(value: string \| undefined, event: monaco.editor.IModelContentChangedEvent) => void` |  | execute when  the changed value change |  |
 | onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | execute when a syntax error occurs | `monaco-editor` supports syntax-checked languages [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
-| `#defalut` | `slot` | `'loading...'` | loading status | when loading files from CDN, displaying the loading status will be more friendly |
+| `#default` | `slot` | `'loading...'` | loading status | when loading files from CDN, displaying the loading status will be more friendly |
 
 ## Hooks
 
