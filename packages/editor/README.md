@@ -51,7 +51,7 @@ And then, use it.
     v-model:value="code"
     theme="vs-dark"
     :options="MONACO_EDITOR_OPTIONS"
-    @mount=“handleMount”
+    @mount="handleMount"
   />
 </template>
 
@@ -231,6 +231,13 @@ If you use `Rollup`, you can use the community provided plugin [rollup-plugin-mo
 ### Webpack
 
 If you use `webpack`, [monaco-editor](https://microsoft.github.io/monaco-editor/) officially provides the `webpack` plugin [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin), which you can use.
+
+## Inspiration
+
+MonacoVue is made possible thanks to the inspirations from the following projects:
+
+- [monaco-loader](https://github.com/suren-atoyan/monaco-loader)
+- [monaco-react](https://github.com/suren-atoyan/monaco-react/tree/master)
 
 ## License
 

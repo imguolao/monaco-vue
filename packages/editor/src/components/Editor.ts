@@ -27,7 +27,7 @@ export interface EditorProps {
 
   /* === */
 
-  theme: 'light' | string
+  theme: 'vs' | string
   line?: number
   options: monacoEditor.editor.IStandaloneEditorConstructionOptions
   overrideServices: monacoEditor.editor.IEditorOverrideServices
@@ -75,7 +75,7 @@ export default defineComponent({
 
     theme: {
       type: String,
-      default: 'light',
+      default: 'vs',
     },
     line: Number,
     options: {
@@ -129,9 +129,9 @@ export default defineComponent({
       (newPath, oldPath) => {
         const model = getOrCreateModel(
           monacoRef.value!,
-          props.value || props.defaultValue!,
-          props.language || props.defaultLanguage,
-          newPath,
+          props.value || props.defaultValue || '',
+          props.language || props.defaultLanguage || '',
+          newPath || props.defaultPath || '',
         )
 
         if (model !== editorRef.value!.getModel()) {
@@ -259,9 +259,9 @@ function useEditor(
     const autoCreatedModelPath = props.path || props.defaultPath
     const defaultModel = getOrCreateModel(
       monacoRef.value,
-      props.value || props.defaultValue!,
-      props.language || props.defaultLanguage,
-      autoCreatedModelPath,
+      props.value || props.defaultValue || '',
+      props.language || props.defaultLanguage || '',
+      autoCreatedModelPath || '',
     )
 
     editorRef.value = monacoRef.value.editor.create(

@@ -1,9 +1,13 @@
 import { createApp } from 'vue'
-// import { install } from '@guolao/vue-monaco-editor'
+import { loader } from '@guolao/vue-monaco-editor'
 import App from './App'
 
-const app = createApp(App)
+loader.config({
+  paths: {
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs',
+  },
+})
 
-// app.use(install)
+const app = createApp(App)
 
 app.mount('#app')
