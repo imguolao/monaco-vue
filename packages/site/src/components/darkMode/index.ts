@@ -1,3 +1,3 @@
-import DarkMode from "./DarkMode";
+import DarkMode from './DarkMode'
 
-export default DarkMode;
+export default DarkMode

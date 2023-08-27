@@ -1,3 +1,3 @@
-import GitHubCorners from "./GitHubCorners";
+import GitHubCorners from './GitHubCorners'
 
-export default GitHubCorners;
+export default GitHubCorners

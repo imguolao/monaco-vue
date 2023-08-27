@@ -1,3 +1,3 @@
-import DocumentBody from "./Body";
+import DocumentBody from './Body'
 
-export default DocumentBody;
+export default DocumentBody

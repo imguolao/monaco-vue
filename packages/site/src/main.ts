@@ -1,4 +1,11 @@
-import { createApp } from "vue";
-import App from "./App";
+import { createApp } from 'vue'
+import { loader } from '@guolao/vue-monaco-editor'
+import App from './App'
 
-createApp(App).mount("#app");
+loader.config({
+  paths: {
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs',
+  },
+})
+
+createApp(App).mount('#app')
