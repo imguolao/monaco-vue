@@ -45,6 +45,8 @@ app.use(VueMonacoEditorPlugin, {
 
 And then, use it.
 
+**Editor**
+
 ```ts
 <template>
   <vue-monaco-editor
@@ -75,7 +77,48 @@ function formatCode() {
 </script>
 ```
 
+**Diff Editor**
+
+```vue
+<template>
+  <vue-monaco-diff-editor
+    theme="vs-dark"
+    original="// the original code"
+    modified="// the modified code"
+    language="javascript"
+    :options="OPTIONS"
+    @mount="handleMount"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref, shallowRef } from 'vue'
+
+const OPTIONS = {
+  automaticLayout: true,
+  formatOnType: true,
+  formatOnPaste: true,
+  readOnly: true,
+}
+
+const diffEditorRef = shallowRef()
+const handleMount = diffEditor => (diffEditorRef.value = diffEditor)
+
+// get the original value
+function getOriginalValue() {
+  return diffEditorRef.value.getOriginalEditor().getValue()
+}
+
+// get the modified value
+function getOriginalValue() {
+  return diffEditorRef.value.getModifiedEditor().getValue()
+}
+</script>
+```
+
 ## Props & Events & slots
+
+### Editor
 
 | Name | Type | Default | Description | remark |
 | --- | --- | --- | --- | --- |
@@ -87,8 +130,8 @@ function formatCode() {
 | path | `string` |  | path to the current model |  |
 | theme | `light` \| `vs-dark` | `light` | theme of the `monaco-editor` | `monaco.editor.defineTheme(...)` |
 | line | `number` |  | number of lines to jump to |  |
-| options | `object` | `{}` | [IStandaloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IStandaloneEditorConstructionOptions.html) |  |
-| overrideServices | `object` | `{}` | [IEditorOverrideServices](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.IEditorOverrideServices.html) |  |
+| options | `object` | `{}` | [IStandaloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html) |  |
+| overrideServices | `object` | `{}` | [IEditorOverrideServices](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IEditorOverrideServices.html) |  |
 | saveViewState | `boolean` | `true` | save the view state of the model (scroll position, etc.) after model changes | a unique `path` needs to be configured for each model |
 | width | `number` \| `string` | `100%` | container width |  |
 | height | `number` \| `string` | `100%` | container height |  |
@@ -98,6 +141,27 @@ function formatCode() {
 | onChange | `(value: string \| undefined, event: monaco.editor.IModelContentChangedEvent) => void` |  | execute when  the changed value change |  |
 | onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | execute when a syntax error occurs | `monaco-editor` supports syntax-checked languages [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | `#default` | `slot` | `'loading...'` | loading status | when loading files from CDN, displaying the loading status will be more friendly |
+
+### Diff Editor
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| original | `string` |  | The original source value (left editor) |
+| modified | `string` |  | The modified source value (right editor) |
+| language | `string` |  | Language for the both models - original and modified |
+| language | `string` |  | Language for the both models - original and modified (all languages that are [supported](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) by monaco-editor) |
+| originalLanguage | `string` |  | This prop gives you the opportunity to specify the language of the original source separately, otherwise, it will get the value of the language property. |
+| modifiedLanguage | `string` |  | This prop gives you the opportunity to specify the language of the modified source separately, otherwise, it will get the value of language property. |
+| originalModelPath | `string` |  | Path for the "original" model. Will be passed as a third argument to `.createModel` method - `monaco.editor.createModel(..., ..., monaco.Uri.parse(originalModelPath))` |
+| modifiedModelPath | `string` |  | Path for the "modified" model. Will be passed as a third argument to `.createModel` method - `monaco.editor.createModel(..., ..., monaco.Uri.parse(modifiedModelPath))` |
+| theme  | `vs` \| `vs-dark` \| `string` | `vs` (`vs` theme equals `light` theme) | The theme for the monaco editor. Define new themes by `monaco.editor.defineTheme`. |
+| options | `object` | `{}` | [IStandaloneDiffEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneDiffEditorConstructionOptions.html) |
+| width | `number` \| `string` | `100%` | container width |
+| height | `number` \| `string` | `100%` | container height |
+| className | `string` |  | container class name |
+| onBeforeMount | `(monaco: Monaco) => void` |  | execute before the editor instance is created |
+| onMount | `(editor: monaco.editor.IStandaloneDiffEditor, monaco: Monaco) => void` |  | execute after the editor instance has been created |
+| `#default` | `slot` | `'loading...'` | loading status |
 
 ## Hooks
 
