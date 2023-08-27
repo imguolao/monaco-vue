@@ -1,9 +1,15 @@
 import Vue from 'vue'
 import VueCompositionAPI from '@vue/composition-api'
-// import { install } from '@guolao/vue-monaco-editor'
+import { install as VueMonacoEditorPlugin, loader } from '@guolao/vue-monaco-editor'
+
+loader.config({
+  paths: {
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs',
+  },
+})
 
 Vue.use(VueCompositionAPI)
-// Vue.use(install)
+Vue.use(VueMonacoEditorPlugin)
 
 import App from './App.vue'
 
