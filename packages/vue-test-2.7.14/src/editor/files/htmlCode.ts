@@ -21,4 +21,4 @@ export default `<!-- html code -->
     <div id="app"></div>
     <!-- <script type="module" src="/src/main.ts"></script> -->
   </body>
-</html>`;
+</html>`

@@ -12,4 +12,4 @@ export default defineComponent(() => {
       onChange={(val, event) => console.log(val, event)}
     />
   )
-})`;
+})`
