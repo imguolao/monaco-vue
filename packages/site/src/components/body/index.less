@@ -16,6 +16,18 @@
       rgba(16, 21, 25, 0.2) 0px 1px 1px;
   }
 
+  &-diff-editor-wrapper {
+    max-width: 995px;
+    margin: 0 auto 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 
+      rgba(16, 21, 25, 0.102) 0px 0px 0px 1px, 
+      rgba(16, 22, 26, 0) 0px 0px 0px, 
+      rgba(16, 21, 25, 0.2) 0px 1px 1px;
+  }
+
   &-main {
     margin: 0px auto;
     text-align: left;
@@ -23,5 +35,29 @@
     overflow: auto;
     padding: 16px;
     border-radius: 5px;
+  }
+
+  &-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+
+    & > span {
+      min-height: 30px;
+      margin: 6px 5px;
+      padding: 0px 10px;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+      border-radius: 3px;
+      background: var(--color-neutral-muted);
+      color: var(--color-theme-text);
+      line-height: 30px;
+      text-decoration: none;
+    }
   }
 }

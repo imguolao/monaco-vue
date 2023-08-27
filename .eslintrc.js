@@ -32,5 +32,7 @@ module.exports = {
     // eslint
     'eol-last': ['error', 'always'],
     'comma-dangle': ['error', 'always-multiline'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'never'],
   },
 }

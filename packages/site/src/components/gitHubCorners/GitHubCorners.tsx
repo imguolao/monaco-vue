@@ -1,23 +1,18 @@
-import { defineComponent } from "vue";
-import "./index.less";
+import { defineComponent } from 'vue'
+import './index.less'
 
 export default defineComponent({
-  name: "GitHubCorners",
+  name: 'GitHubCorners',
   props: {
     href: String,
     target: {
       type: String,
-      default: "__blank",
+      default: '__blank',
     },
   },
   setup(props) {
     return () => (
-      <a
-        class="github-corner"
-        aria-label="View source on GitHub"
-        href={props.href}
-        target={props.target}
-      >
+      <a class="github-corner" aria-label="View source on GitHub" href={props.href} target={props.target}>
         <svg
           width="80"
           height="80"
@@ -39,6 +34,6 @@ export default defineComponent({
           ></path>
         </svg>
       </a>
-    );
+    )
   },
-});
+})
