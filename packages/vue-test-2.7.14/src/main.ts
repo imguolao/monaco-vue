@@ -1,7 +1,13 @@
 import Vue from 'vue'
-import { install } from '@guolao/vue-monaco-editor'
+import { install as VueMonacoEditorPlugin, loader } from '@guolao/vue-monaco-editor'
 import App from './App.vue'
 
-Vue.use(install)
+loader.config({
+  paths: {
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs',
+  },
+})
+
+Vue.use(VueMonacoEditorPlugin)
 
 new Vue(App).$mount('#app')

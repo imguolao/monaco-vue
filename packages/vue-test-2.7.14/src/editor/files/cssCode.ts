@@ -74,4 +74,4 @@ body {
 .ql-editor a:hover {
   text-decoration: underline;
 }
-`;
+`
