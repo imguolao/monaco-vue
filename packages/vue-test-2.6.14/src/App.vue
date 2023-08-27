@@ -1,42 +1,38 @@
 <template>
     <div style="height: 100%;">
-      <button 
-        v-for="item in files" 
-        :key="item.name"
-        @click="handleClick(item.name)">
-        {{ item.name }}
-      </button>
-      <Editor 
-        height="80vh"
-        theme="vs-dark"
-        :path="fileName"
-        :defaultLanguage="file.language"
-        :defaultValue="file.value"
-        @change="handleChange"
-      />
+      <div class="header">
+        <button @click="handleEditorSelect" :disabled="isEditor">Editor</button>
+        <button @click="handleEditorSelect" :disabled="!isEditor">Diff Editor</button>
+      </div>
+      <editor-demo v-show="isEditor" />
+      <diff-editor-demo v-show="!isEditor" />
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed } from '@vue/composition-api'
-import Editor from '@guolao/vue-monaco-editor'
-import files from './files'
+import EditorDemo from './editor/EditorDemo.vue'
+import DiffEditorDemo from './diffEditor/DiffEditorDemo.vue'
 
 export default defineComponent({
-  components: { Editor },
+  components: {
+    EditorDemo,
+    DiffEditorDemo,
+  },
   setup() {
-    const fileName = ref<keyof typeof files>("script.js");
-    const file = computed(() => files[fileName.value]);
-    const handleClick = (name: keyof typeof files) => fileName.value = name
-    const handleChange = (val: string, event: any) => console.log(val, event)
+    const isEditor = ref(true)
+    const handleEditorSelect = () => isEditor.value = !isEditor.value
 
-    return { 
-      fileName, 
-      file, 
-      files,
-      handleClick,
-      handleChange,
+    return {
+      isEditor,
+      handleEditorSelect,  
     }
   }
 })
 </script>
+
+<style>
+.header {
+  height: 40px;
+}
+</style>
