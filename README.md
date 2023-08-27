@@ -232,6 +232,13 @@ If you use `Rollup`, you can use the community provided plugin [rollup-plugin-mo
 
 If you use `webpack`, [monaco-editor](https://microsoft.github.io/monaco-editor/) officially provides the `webpack` plugin [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin), which you can use.
 
+## Inspiration
+
+MonacoVue is made possible thanks to the inspirations from the following projects:
+
+- [monaco-loader](https://github.com/suren-atoyan/monaco-loader)
+- [monaco-react](https://github.com/suren-atoyan/monaco-react/tree/master)
+
 ## License
 
 [MIT](LICENSE)

@@ -1,68 +1,54 @@
-import { type Ref, defineComponent, ref, computed } from 'vue'
-import Editor, { loader } from '@guolao/vue-monaco-editor'
-import files from './files'
+import { defineComponent, ref } from 'vue'
+import { NLayout, NLayoutHeader, NLayoutContent, NLayoutSider, NButton } from 'naive-ui'
+import EditorDemo from './views/editor/Editor'
+import DiffEditorDemo from './views/diffEditor/DiffEditor'
+import Github from './components/icons/Github.vue'
+import { EditorConfig, useEditorConfig } from './views/editor/Config'
+import { DiffEditorConfig, useDiffEditorConfig } from './views/diffEditor/Config'
+import './App.css'
 
-import * as monaco from 'monaco-editor'
-import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
-import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
-import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
-import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
-import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
+const goToGithub = () => {
+  window.open('https://github.com/imguolao/monaco-vue')
+}
 
-;(self as any).MonacoEnvironment = {
-  getWorker(_: any, label: string) {
-    if (label === 'json') {
-      return new jsonWorker()
-    }
-    if (label === 'css' || label === 'scss' || label === 'less') {
-      return new cssWorker()
-    }
-    if (label === 'html' || label === 'handlebars' || label === 'razor') {
-      return new htmlWorker()
-    }
-    if (label === 'typescript' || label === 'javascript') {
-      return new tsWorker()
-    }
-    return new editorWorker()
+export default defineComponent({
+  setup() {
+    useEditorConfig()
+    useDiffEditorConfig()
+
+    const isDiffEditor = ref(false)
+    const handleEditorSelect = () => (isDiffEditor.value = !isDiffEditor.value)
+
+    return () => (
+      <NLayout class="wrapper">
+        <NLayoutHeader class="header" bordered>
+          <div class="header--left">
+            <p class="header--icon">{'<MV />'}</p>
+            <p class="header--title">Monaco Editor Vue</p>
+          </div>
+          <div class="header--right">
+            <NButton onClick={handleEditorSelect} disabled={!isDiffEditor.value}>
+              Editor
+            </NButton>
+            <NButton onClick={handleEditorSelect} disabled={isDiffEditor.value}>
+              DiffEditor
+            </NButton>
+            <NButton
+              icon-placement="right"
+              onClick={goToGithub}
+              v-slots={{
+                icon: () => <Github />,
+              }}
+            >
+              Github
+            </NButton>
+          </div>
+        </NLayoutHeader>
+        <NLayout class="main" has-sider>
+          <NLayoutContent class="content">{isDiffEditor.value ? <DiffEditorDemo /> : <EditorDemo />}</NLayoutContent>
+          <NLayoutSider width={380}>{isDiffEditor.value ? <DiffEditorConfig /> : <EditorConfig />}</NLayoutSider>
+        </NLayout>
+      </NLayout>
+    )
   },
-}
-
-loader.config({ monaco })
-
-export default defineComponent(() => {
-  const fileName = ref<keyof typeof files>('script.js')
-  const file = computed(() => files[fileName.value])
-
-  // const modelValue = ref('123')
-  // watchEffect(() => console.log(modelValue.value))
-
-  return () => {
-    return (
-      <>
-        {renderButtonGroup(fileName)}
-        <Editor
-          height="80vh"
-          theme="vs-dark"
-          // v-model:value={modelValue.value}
-          path={fileName.value}
-          defaultLanguage={file.value.language}
-          defaultValue={file.value.value}
-          // defaultLanguage="javascript"
-          // defaultValue="// some comment"
-          onChange={(val, event) => console.log(val, event)}
-          onValidate={markers => console.log(markers)}
-        />
-      </>
-    )
-  }
 })
-
-function renderButtonGroup(fileName: Ref<string>) {
-  return Object.keys(files).map(key => {
-    return (
-      <button disabled={fileName.value === key} onClick={() => (fileName.value = key)}>
-        {key}
-      </button>
-    )
-  })
-}
