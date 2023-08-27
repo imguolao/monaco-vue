@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/imguolao/monaco-vue/compare/v1.1.4...v1.2.0) (2023-08-27)
+
+### Bug Fixes
+
+- full corner symbols and typos ([#20](https://github.com/imguolao/monaco-vue/issues/20)) ([ed6191a](https://github.com/imguolao/monaco-vue/commit/ed6191ad4ae3630575996a0d030f340db261b992))
+
+### Features
+
+- **site:** add diff editor demo in site ([#24](https://github.com/imguolao/monaco-vue/issues/24)) ([0d1080e](https://github.com/imguolao/monaco-vue/commit/0d1080ee6ea401a1f2862ae76bd60588b54a7938))
+- support diff-editor ([#21](https://github.com/imguolao/monaco-vue/issues/21)) ([04593be](https://github.com/imguolao/monaco-vue/commit/04593be1df1093e480ade3f4d2147c10f76237af)), closes [#15](https://github.com/imguolao/monaco-vue/issues/15)
+
 ## [1.1.4](https://github.com/imguolao/monaco-vue/compare/v1.1.3...v1.1.4) (2023-07-31)
 
 **Note:** Version bump only for package @guolao/vue-monaco-editor

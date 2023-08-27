@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/imguolao/monaco-vue/compare/v1.1.4...v1.2.0) (2023-08-27)
+
+### Features
+
+- **site:** add diff editor demo in site ([#24](https://github.com/imguolao/monaco-vue/issues/24)) ([0d1080e](https://github.com/imguolao/monaco-vue/commit/0d1080ee6ea401a1f2862ae76bd60588b54a7938))
+
 ## [1.1.4](https://github.com/imguolao/monaco-vue/compare/v1.1.3...v1.1.4) (2023-07-31)
 
 ### Bug Fixes
