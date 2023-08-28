@@ -38,7 +38,7 @@ const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
     // The default CDN config
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.36.0/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs'
   },
 })
 ```
@@ -47,7 +47,7 @@ And then, use it.
 
 **Editor**
 
-```ts
+```vue
 <template>
   <vue-monaco-editor
     v-model:value="code"
@@ -122,13 +122,13 @@ function getOriginalValue() {
 
 | Name | Type | Default | Description | remark |
 | --- | --- | --- | --- | --- |
+| value | `string` |  | value of the current model, can use `v-model:value` | `v-model:value` |
+| language | `string` |  | all language of the current model | languages supported by `monaco-editor`, [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
+| path | `string` |  | path to the current model |  |
 | defaultValue | `string` |  | default value of the current model |  |
 | defaultLanguage | `string` |  | default language of the current model | languages supported by `monaco-editor` [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | defaultPath | `string` |  | default path of the current model | `monaco.editor.createModel(..., ..., monaco.Uri.parse(defaultPath))` |
-| value | `string` |  | value of the current model, can use `v-model:value` | `v-model:value` |
-| language | `string` |  | language of the current model | languages supported by `monaco-editor` [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
-| path | `string` |  | path to the current model |  |
-| theme | `light` \| `vs-dark` | `light` | theme of the `monaco-editor` | `monaco.editor.defineTheme(...)` |
+| theme | `vs` \| `vs-dark` | `vs` | the theme for the monaco editor. |  |
 | line | `number` |  | number of lines to jump to |  |
 | options | `object` | `{}` | [IStandaloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html) |  |
 | overrideServices | `object` | `{}` | [IEditorOverrideServices](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IEditorOverrideServices.html) |  |
@@ -148,7 +148,6 @@ function getOriginalValue() {
 | --- | --- | --- | --- |
 | original | `string` |  | The original source value (left editor) |
 | modified | `string` |  | The modified source value (right editor) |
-| language | `string` |  | Language for the both models - original and modified |
 | language | `string` |  | Language for the both models - original and modified (all languages that are [supported](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) by monaco-editor) |
 | originalLanguage | `string` |  | This prop gives you the opportunity to specify the language of the original source separately, otherwise, it will get the value of the language property. |
 | modifiedLanguage | `string` |  | This prop gives you the opportunity to specify the language of the modified source separately, otherwise, it will get the value of language property. |
@@ -156,12 +155,12 @@ function getOriginalValue() {
 | modifiedModelPath | `string` |  | Path for the "modified" model. Will be passed as a third argument to `.createModel` method - `monaco.editor.createModel(..., ..., monaco.Uri.parse(modifiedModelPath))` |
 | theme  | `vs` \| `vs-dark` \| `string` | `vs` (`vs` theme equals `light` theme) | The theme for the monaco editor. Define new themes by `monaco.editor.defineTheme`. |
 | options | `object` | `{}` | [IStandaloneDiffEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneDiffEditorConstructionOptions.html) |
-| width | `number` \| `string` | `100%` | container width |
-| height | `number` \| `string` | `100%` | container height |
-| className | `string` |  | container class name |
-| onBeforeMount | `(monaco: Monaco) => void` |  | execute before the editor instance is created |
-| onMount | `(editor: monaco.editor.IStandaloneDiffEditor, monaco: Monaco) => void` |  | execute after the editor instance has been created |
-| `#default` | `slot` | `'loading...'` | loading status |
+| width | `number` \| `string` | `100%` | Container width |
+| height | `number` \| `string` | `100%` | Container height |
+| className | `string` |  | Container class name |
+| onBeforeMount | `(monaco: Monaco) => void` |  | Execute before the editor instance is created |
+| onMount | `(editor: monaco.editor.IStandaloneDiffEditor, monaco: Monaco) => void` |  | Execute after the editor instance has been created |
+| `#default` | `slot` | `'loading...'` | Loading status |
 
 ## Hooks
 
@@ -210,7 +209,7 @@ const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
     // The default CDN config
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs'
   },
 })
 ```
@@ -221,7 +220,7 @@ import { loader } from "@guolao/vue-monaco-editor"
 // loaded from CDN
 loader.config({
   paths: {
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs'
   },
 })
 
