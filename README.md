@@ -37,8 +37,8 @@ import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
-    // The default CDN config
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs'
+    // The recommended CDN config
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.38.0/min/vs'
   },
 })
 ```
@@ -208,8 +208,8 @@ import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
-    // The default CDN config
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs'
+    // The recommended CDN config
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.38.0/min/vs'
   },
 })
 ```
@@ -220,7 +220,7 @@ import { loader } from "@guolao/vue-monaco-editor"
 // loaded from CDN
 loader.config({
   paths: {
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.38.0/min/vs'
   },
 })
 
