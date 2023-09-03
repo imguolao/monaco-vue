@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/imguolao/monaco-vue/compare/v1.2.0...v1.2.1) (2023-09-03)
+
+### Bug Fixes
+
+- rollback recommended version to 0.38 ([#28](https://github.com/imguolao/monaco-vue/issues/28)) ([cb50352](https://github.com/imguolao/monaco-vue/commit/cb50352224b7746cee56b0a0d5a80d446664a46e))
+
 # [1.2.0](https://github.com/imguolao/monaco-vue/compare/v1.1.4...v1.2.0) (2023-08-27)
 
 ### Features
