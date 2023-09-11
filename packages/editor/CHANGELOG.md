@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/imguolao/monaco-vue/compare/v1.2.1...v1.3.0) (2023-09-11)
+
+### Features
+
+- load monaco instance after mounted to support ssr ([#31](https://github.com/imguolao/monaco-vue/issues/31)) ([551fab5](https://github.com/imguolao/monaco-vue/commit/551fab5b7750d081fa6750bd5a1a4914bfb285d7)), closes [#30](https://github.com/imguolao/monaco-vue/issues/30)
+
 ## [1.2.1](https://github.com/imguolao/monaco-vue/compare/v1.2.0...v1.2.1) (2023-09-03)
 
 ### Bug Fixes

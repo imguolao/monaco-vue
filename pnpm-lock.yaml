@@ -98,7 +98,7 @@ importers:
   packages/playground:
     dependencies:
       '@guolao/vue-monaco-editor':
-        specifier: workspace:^1.2.1
+        specifier: workspace:^1.3.0
         version: link:../editor
       monaco-editor:
         specifier: ^0.38.0
@@ -135,7 +135,7 @@ importers:
   packages/site:
     dependencies:
       '@guolao/vue-monaco-editor':
-        specifier: workspace:^1.2.1
+        specifier: workspace:^1.3.0
         version: link:../editor
       vue:
         specifier: ^3.2.47

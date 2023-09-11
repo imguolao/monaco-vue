@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/imguolao/monaco-vue/compare/v1.2.1...v1.3.0) (2023-09-11)
+
+**Note:** Version bump only for package vue-test-2.6.14
+
 ## [1.2.1](https://github.com/imguolao/monaco-vue/compare/v1.2.0...v1.2.1) (2023-09-03)
 
 ### Bug Fixes
