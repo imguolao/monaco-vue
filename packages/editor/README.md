@@ -38,7 +38,7 @@ const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
     // The recommended CDN config
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.38.0/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
 ```
@@ -209,7 +209,7 @@ const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
     // The recommended CDN config
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.38.0/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
 ```
@@ -220,7 +220,7 @@ import { loader } from "@guolao/vue-monaco-editor"
 // loaded from CDN
 loader.config({
   paths: {
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.38.0/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
 
