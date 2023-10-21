@@ -37,8 +37,7 @@
 }
 
 .main {
-  height: calc(100% - var(--header-height));
-  padding-top: 16px;
+  flex: 1;
 }
 
 .content {

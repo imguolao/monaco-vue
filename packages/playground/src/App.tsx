@@ -20,7 +20,7 @@ export default defineComponent({
     const handleEditorSelect = () => (isDiffEditor.value = !isDiffEditor.value)
 
     return () => (
-      <NLayout class="wrapper">
+      <NLayout class="wrapper" content-style="display: flex; flex-direction: column;">
         <NLayoutHeader class="header" bordered>
           <div class="header--left">
             <p class="header--icon">{'<MV />'}</p>
