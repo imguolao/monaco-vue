@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/imguolao/monaco-vue/compare/v1.4.0...v1.4.1) (2023-12-10)
+
+### Bug Fixes
+
+- editor line props don't work ([#43](https://github.com/imguolao/monaco-vue/issues/43)) ([c077dfa](https://github.com/imguolao/monaco-vue/commit/c077dfa832b1126e135df21434fe862f79e4ce6f)), closes [#42](https://github.com/imguolao/monaco-vue/issues/42)
+
 # [1.4.0](https://github.com/imguolao/monaco-vue/compare/v1.3.0...v1.4.0) (2023-10-21)
 
 ### Features
