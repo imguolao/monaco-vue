@@ -288,6 +288,11 @@ function useEditor(
       }
     })
 
+    // reason for undefined check: https://github.com/suren-atoyan/monaco-react/pull/188
+    if (editorRef.value && !isUndefined(props.line)) {
+      editorRef.value.revealLine(props.line!)
+    }
+
     // editor mount
     // props.onMount?.(editorRef.value, monacoRef.value)
     emit('mount', editorRef.value, monacoRef.value)
