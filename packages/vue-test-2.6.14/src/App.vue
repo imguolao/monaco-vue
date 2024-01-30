@@ -1,8 +1,8 @@
 <template>
     <div style="height: 100%;">
       <div class="header">
-        <button @click="handleEditorSelect" :disabled="isEditor">Editor</button>
-        <button @click="handleEditorSelect" :disabled="!isEditor">Diff Editor</button>
+        <button :disabled="isEditor" @click="handleEditorSelect">Editor</button>
+        <button :disabled="!isEditor" @click="handleEditorSelect">Diff Editor</button>
       </div>
       <editor-demo v-show="isEditor" />
       <diff-editor-demo v-show="!isEditor" />
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from '@vue/composition-api'
+import { defineComponent, ref } from '@vue/composition-api'
 import EditorDemo from './editor/EditorDemo.vue'
 import DiffEditorDemo from './diffEditor/DiffEditorDemo.vue'
 
@@ -25,9 +25,9 @@ export default defineComponent({
 
     return {
       isEditor,
-      handleEditorSelect,  
+      handleEditorSelect,
     }
-  }
+  },
 })
 </script>
 

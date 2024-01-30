@@ -141,6 +141,7 @@ function getOriginalValue() {
 | onChange | `(value: string \| undefined, monaco.editor.IModelContentChangedEvent) => void) => void` |  | 编辑改变值后执行 |  |
 | onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | 当语法发生错误时执行 | `monaco-editor` 支持语法校验的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | `#default` | `slot` | `'loading...'` | 加载状态 | 从 CDN 加载文件需要一段时间，显示加载状态会更为友好 |
+| `#failure` | `slot` | `'load failure'` | 加载失败 |  |
 
 ### Diff Editor
 
@@ -161,6 +162,7 @@ function getOriginalValue() {
 | onBeforeMount | `(monaco: Monaco) => void` |  | 编辑器实例创建前执行 |
 | onMount | `(editor: monaco.editor.IStandaloneDiffEditor, monaco: Monaco) => void` |  | 编辑器实例创建后执行 |
 | `#default` | `slot` | `'loading...'` | 加载状态 |
+| `#failure` | `slot` | `'load failure'` | 加载失败状态 |
 
 ## Hooks
 

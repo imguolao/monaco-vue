@@ -1,4 +1,6 @@
 node_modules
+dist
+lib
 
 !/packages/editor/src
 !/packages/playground/src

@@ -1,19 +1,24 @@
 <template>
   <div style="height: 100%;">
-    <button 
-      v-for="item in files" 
+    <button
+      v-for="item in files"
       :key="item.name"
       @click="handleClick(item.name)">
       {{ item.name }}
     </button>
-    <vue-monaco-editor 
+    <vue-monaco-editor
       height="80vh"
       theme="vs-dark"
       :path="fileName"
       :language="file.language"
       :value="file.value"
       @change="handleChange"
-    />
+    >
+      <div style="height: 100%;">loading slot</div>
+      <template #failure>
+        <div style="height: 100%;">failure slot</div>
+      </template>
+    </vue-monaco-editor>
   </div>
 </template>
 
@@ -24,18 +29,18 @@ import files from './files'
 export default defineComponent({
   name: 'EditorDemo',
   setup() {
-    const fileName = ref<keyof typeof files>("script.js");
-    const file = computed(() => files[fileName.value]);
+    const fileName = ref<keyof typeof files>('script.js')
+    const file = computed(() => files[fileName.value])
     const handleClick = (name: string) => fileName.value = name as keyof typeof files
     const handleChange = (val: string, event: any) => console.log(val, event)
 
-    return { 
-      fileName, 
-      file, 
+    return {
+      fileName,
+      file,
       files,
       handleClick,
       handleChange,
     }
-  }
+  },
 })
 </script>
