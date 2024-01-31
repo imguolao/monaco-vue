@@ -15,7 +15,7 @@ import {
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 import { type Nullable, type MonacoEditor } from '../types'
 import { useMonaco, useContainer } from '../hooks'
-import { getOrCreateModel, isUndefined, defaultSlotHelper } from '../utils'
+import { getOrCreateModel, isUndefined, slotHelper } from '../utils'
 
 export interface EditorProps {
   defaultValue?: string
@@ -107,7 +107,7 @@ export default defineComponent({
   setup(props, ctx: SetupContext<VueMonacoEditorEmitsOptions>) {
     const viewStates = new Map<string | undefined, Nullable<monacoEditor.editor.ICodeEditorViewState>>()
     const containerRef = shallowRef<Nullable<HTMLElement>>(null)
-    const { monacoRef, unload } = useMonaco()
+    const { monacoRef, unload, isLoadFailed } = useMonaco()
     const { editorRef } = useEditor(ctx, props, monacoRef, containerRef)
     const { disposeValidator } = useValidator(ctx, props, monacoRef, editorRef)
     const isEditorReady = computed(() => !!monacoRef.value && !!editorRef.value)
@@ -186,6 +186,7 @@ export default defineComponent({
     return {
       containerRef,
       isEditorReady,
+      isLoadFailed,
       wrapperStyle,
       containerStyle,
     }
@@ -194,6 +195,7 @@ export default defineComponent({
     const {
       $slots,
       isEditorReady,
+      isLoadFailed,
       wrapperStyle,
       containerStyle,
 
@@ -213,7 +215,13 @@ export default defineComponent({
             {
               style: loadingStyle,
             },
-            $slots.default ? defaultSlotHelper($slots.default) : 'loading...',
+            isLoadFailed
+              ? $slots.failure
+                ? slotHelper($slots.failure)
+                : 'load failed'
+              : $slots.default
+              ? slotHelper($slots.default)
+              : 'loading...',
           ),
         h('div', {
           ref: 'containerRef',

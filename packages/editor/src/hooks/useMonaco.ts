@@ -1,10 +1,10 @@
 import type { Nullable, MonacoEditor } from '../types'
-import { onMounted, shallowRef } from 'vue-demi'
+import { onMounted, shallowRef, ref } from 'vue-demi'
 import loader from '@monaco-editor/loader'
 
 export function useMonaco() {
   const monacoRef = shallowRef<Nullable<MonacoEditor>>(loader.__getMonacoInstance())
-
+  const isLoadFailed = ref<boolean>(false)
   let promise: ReturnType<(typeof loader)['init']>
 
   onMounted(() => {
@@ -16,6 +16,7 @@ export function useMonaco() {
       .then(monacoInstance => (monacoRef.value = monacoInstance))
       .catch(error => {
         if (error?.type !== 'cancelation') {
+          isLoadFailed.value = true
           console.error('Monaco initialization error:', error)
         }
       })
@@ -27,5 +28,6 @@ export function useMonaco() {
   return {
     monacoRef,
     unload,
+    isLoadFailed,
   }
 }

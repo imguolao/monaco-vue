@@ -1,7 +1,7 @@
 import type { MonacoEditor } from '../types'
 
-export function defaultSlotHelper(defaultSlots: any) {
-  return typeof defaultSlots == 'function' ? defaultSlots() : defaultSlots
+export function slotHelper(slot: any) {
+  return typeof slot == 'function' ? slot() : slot
 }
 
 export function isUndefined(v: unknown) {

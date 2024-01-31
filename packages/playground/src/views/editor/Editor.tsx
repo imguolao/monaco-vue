@@ -6,6 +6,13 @@ import { useConfigContext } from './Config'
 export default defineComponent({
   setup() {
     const { theme } = useConfigContext()
-    return () => <Editor value={example.code} language={example.lang} theme={theme.value} />
+    return () => (
+      <Editor value={example.code} language={example.lang} theme={theme.value}>
+        {{
+          default: () => 'loading slot',
+          failure: () => 'failure slot',
+        }}
+      </Editor>
+    )
   },
 })

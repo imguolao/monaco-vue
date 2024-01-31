@@ -14,7 +14,7 @@ import {
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 import { type Nullable, type MonacoEditor } from '../types'
 import { useMonaco, useContainer } from '../hooks'
-import { defaultSlotHelper, getOrCreateModel } from '../utils'
+import { slotHelper, getOrCreateModel } from '../utils'
 
 export interface DiffEditorProps {
   original?: string
@@ -86,7 +86,7 @@ export default defineComponent({
   },
   setup(props: DiffEditorProps, ctx: SetupContext<VueMonacoDiffEditorEmitsOptions>) {
     const containerRef = shallowRef<Nullable<HTMLElement>>(null)
-    const { monacoRef, unload } = useMonaco()
+    const { monacoRef, unload, isLoadFailed } = useMonaco()
     const { diffEditorRef } = useDiffEditor(ctx, props, monacoRef, containerRef)
     const isDiffEditorReady = computed(() => !!monacoRef.value && !!diffEditorRef.value)
     const { wrapperStyle, containerStyle } = useContainer(props, isDiffEditorReady)
@@ -213,12 +213,13 @@ export default defineComponent({
     return {
       containerRef,
       isDiffEditorReady,
+      isLoadFailed,
       wrapperStyle,
       containerStyle,
     }
   },
   render() {
-    const { $slots, isDiffEditorReady, wrapperStyle, containerStyle, className } = this
+    const { $slots, isDiffEditorReady, isLoadFailed, wrapperStyle, containerStyle, className } = this
 
     return h(
       'div',
@@ -232,7 +233,13 @@ export default defineComponent({
             {
               style: loadingStyle,
             },
-            $slots.default ? defaultSlotHelper($slots.default) : 'loading...',
+            isLoadFailed
+              ? $slots.failure
+                ? slotHelper($slots.failure)
+                : 'load failed'
+              : $slots.default
+              ? slotHelper($slots.default)
+              : 'loading...',
           ),
         h('div', {
           ref: 'containerRef',
