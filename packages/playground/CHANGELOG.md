@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/imguolao/monaco-vue/compare/v1.4.1...v1.5.0) (2024-01-31)
+
+### Features
+
+- add failure slot to fall back ([#48](https://github.com/imguolao/monaco-vue/issues/48)) ([0670b3f](https://github.com/imguolao/monaco-vue/commit/0670b3fc2608a59e55e3fa3396978aa59d357a0e)), closes [#47](https://github.com/imguolao/monaco-vue/issues/47)
+
 ## [1.4.1](https://github.com/imguolao/monaco-vue/compare/v1.4.0...v1.4.1) (2023-12-10)
 
 **Note:** Version bump only for package playground
