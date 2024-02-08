@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/imguolao/monaco-vue/compare/v1.5.0...v1.5.1) (2024-02-08)
+
+### Bug Fixes
+
+- fix monaco editor version in peer-dependencies ([#50](https://github.com/imguolao/monaco-vue/issues/50)) ([065983b](https://github.com/imguolao/monaco-vue/commit/065983b8cced947c2f688c8514ccb5722a19a75b)), closes [#49](https://github.com/imguolao/monaco-vue/issues/49)
+
 # [1.5.0](https://github.com/imguolao/monaco-vue/compare/v1.4.1...v1.5.0) (2024-01-31)
 
 ### Features
