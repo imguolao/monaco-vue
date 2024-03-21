@@ -10,7 +10,7 @@ English | [简体中文](https://github.com/imguolao/monaco-vue/blob/main/README
 
 View [Demo](https://imguolao.github.io/monaco-vue/).
 
-If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you still need to Use the plugin for the packaging tool, [viewed here](#npm-package).
+If you wanna use [monaco-editor](https://microsoft.github.io/monaco-editor/) as an `NPM Package`, loading `monaco-editor` files from `node_modules` and bundling them into your code, you still need to use the plugin for the packaging tool.
 
 ## Installation
 
@@ -41,6 +41,21 @@ app.use(VueMonacoEditorPlugin, {
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
+
+// You can also:
+// main.ts
+import { loader } from '@guolao/vue-monaco-editor'
+loader.config({
+  paths: {
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs',
+  },
+})
+
+// editor.vue
+import { VueMonacoEditor } from '@guolao/vue-monaco-editor'
+export default {
+  components: { VueMonacoEditor },
+}
 ```
 
 And then, use it.
@@ -244,7 +259,7 @@ loader.config({
 
 ## NPM Package
 
-If you want to use [monaco-editor](https://microsoft.github.io/monaco-editor/) as `NPM Package` to load `monaco-editor` files from `node_modules` to package into your code, you still need to use the plugin for the packaging tool.
+If you wanna use [monaco-editor](https://microsoft.github.io/monaco-editor/) as an `NPM Package`, loading `monaco-editor` files from `node_modules` and bundling them into your code, you still need to use the plugin for the packaging tool.
 
 ```js
 import * as monaco from "monaco-editor"
@@ -256,7 +271,7 @@ loader.config({ monaco })
 
 ### Vite
 
-If you use `vite`, you need to do this (see [#1791 (comment)](https://github.com/vitejs/vite/discussions/1791#discussioncomment-321046) for details).
+If you are using `vite`, you need to do this (see [#1791 (comment)](https://github.com/vitejs/vite/discussions/1791#discussioncomment-321046) for details).
 
 ```js
 import { loader } from "@guolao/vue-monaco-editor"
@@ -291,11 +306,11 @@ loader.config({ monaco })
 
 ### Rollup
 
-If you use `Rollup`, you can use the community provided plugin [rollup-plugin-monaco-editor](https://github.com/chengcyber/rollup-plugin-monaco-editor).
+If you are using `Rollup`, you can use the community provided plugin [rollup-plugin-monaco-editor](https://github.com/chengcyber/rollup-plugin-monaco-editor).
 
 ### Webpack
 
-If you use `webpack`, [monaco-editor](https://microsoft.github.io/monaco-editor/) officially provides the `webpack` plugin [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin), which you can use.
+If you are using `webpack`, the official [monaco-editor](https://microsoft.github.io/monaco-editor/) provides a `webpack` plugin called [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin), which you can install and use.
 
 ## Inspiration
 
