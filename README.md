@@ -150,11 +150,11 @@ function getOriginalValue() {
 | saveViewState | `boolean` | `true` | save the view state of the model (scroll position, etc.) after model changes | a unique `path` needs to be configured for each model |
 | width | `number` \| `string` | `100%` | container width |  |
 | height | `number` \| `string` | `100%` | container height |  |
-| className | `string` |  | container class name |  |
-| onBeforeMount | `(monaco: Monaco) => void` |  | execute before the editor instance is created |  |
-| onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | execute after the editor instance has been created |  |
-| onChange | `(value: string \| undefined, event: monaco.editor.IModelContentChangedEvent) => void` |  | execute when  the changed value change |  |
-| onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | execute when a syntax error occurs | `monaco-editor` supports syntax-checked languages [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
+| className | `string` |  | inner container class name |  |
+| @beforeMount | `(monaco: Monaco) => void` |  | execute before the editor instance is created (don't use `@before-mount` in vue2, [detail](https://v2.vuejs.org/v2/guide/components-custom-events#Event-Names)) |  |
+| @mount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | execute after the editor instance has been created |  |
+| @change | `(value: string \| undefined, event: monaco.editor.IModelContentChangedEvent) => void` |  | execute when  the changed value change |  |
+| @validate | `(markers: monaco.editor.IMarker[]) => void` |  | execute when a syntax error occurs | `monaco-editor` supports syntax-checked languages [view here](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
 | `#default` | `slot` | `'loading...'` | loading status | when loading files from CDN, displaying the loading status will be more friendly |
 | `#failure` | `slot` | `'load failed'` | failure status | example: CDN network error |
 
@@ -173,9 +173,9 @@ function getOriginalValue() {
 | options | `object` | `{}` | [IStandaloneDiffEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneDiffEditorConstructionOptions.html) |
 | width | `number` \| `string` | `100%` | Container width |
 | height | `number` \| `string` | `100%` | Container height |
-| className | `string` |  | Container class name |
-| onBeforeMount | `(monaco: Monaco) => void` |  | Execute before the editor instance is created |
-| onMount | `(editor: monaco.editor.IStandaloneDiffEditor, monaco: Monaco) => void` |  | Execute after the editor instance has been created |
+| className | `string` |  | Inner container class name |
+| @beforeMount | `(monaco: Monaco) => void` |  | Execute before the editor instance is created (don't use `@before-mount` in vue2, [detail](https://v2.vuejs.org/v2/guide/components-custom-events#Event-Names)) |
+| @mount | `(editor: monaco.editor.IStandaloneDiffEditor, monaco: Monaco) => void` |  | Execute after the editor instance has been created |
 | `#default` | `slot` | `'loading...'` | Loading status |
 | `#failure` | `slot` | `'load failed'` | Failure status |  |
 
