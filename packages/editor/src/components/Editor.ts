@@ -123,31 +123,49 @@ export default defineComponent({
       }
     })
 
-    // path
     watch(
-      () => props.path,
-      (newPath, oldPath) => {
-        const model = getOrCreateModel(
+      [() => props.path, () => props.value, () => props.language, () => props.line],
+      (
+        [newPath, newValue, newLanguage, newLine],
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        [oldPath, oldValue, oldLanguage, oldLine],
+      ) => {
+        if (!isEditorReady.value) {
+          return
+        }
+
+        const currentModel = editorRef.value!.getModel()
+        const newModel = getOrCreateModel(
           monacoRef.value!,
-          props.value || props.defaultValue || '',
-          props.language || props.defaultLanguage || '',
+          newValue || props.defaultValue || '',
+          newLanguage || props.defaultLanguage || '',
           newPath || props.defaultPath || '',
         )
-
-        if (model !== editorRef.value!.getModel()) {
+        if (currentModel !== newModel) {
           props.saveViewState && viewStates.set(oldPath, editorRef.value!.saveViewState())
-          editorRef.value!.setModel(model)
+          editorRef.value!.setModel(newModel)
           props.saveViewState && editorRef.value!.restoreViewState(viewStates.get(newPath)!)
-        }
-      },
-    )
 
-    // value
-    watch(
-      () => props.value,
-      newValue => {
-        if (editorRef.value && editorRef.value.getValue() !== newValue) {
-          editorRef.value.setValue(newValue!)
+          // reason for undefined check: https://github.com/suren-atoyan/monaco-react/pull/188
+          if (!isUndefined(newLine)) {
+            editorRef.value!.revealLine(newLine!)
+          }
+
+          // exit
+          return
+        }
+
+        if (editorRef.value!.getValue() !== newValue) {
+          editorRef.value!.setValue(newValue!)
+        }
+
+        if (newLanguage !== oldLanguage) {
+          monacoRef.value!.editor.setModelLanguage(editorRef.value!.getModel()!, newLanguage!)
+        }
+
+        // reason for undefined check: https://github.com/suren-atoyan/monaco-react/pull/188
+        if (!isUndefined(newLine) && newLine !== oldLine) {
+          editorRef.value!.revealLine(newLine!)
         }
       },
     )
@@ -163,24 +181,6 @@ export default defineComponent({
     watch(
       () => props.theme,
       theme => monacoRef.value && monacoRef.value.editor.setTheme(theme),
-    )
-
-    // language
-    watch(
-      () => props.language,
-      language =>
-        isEditorReady.value && monacoRef.value!.editor.setModelLanguage(editorRef.value!.getModel()!, language!),
-    )
-
-    // line
-    watch(
-      () => props.line,
-      line => {
-        // reason for undefined check: https://github.com/suren-atoyan/monaco-react/pull/188
-        if (editorRef.value && !isUndefined(line)) {
-          editorRef.value.revealLine(line!)
-        }
-      },
     )
 
     return {

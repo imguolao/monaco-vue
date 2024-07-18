@@ -101,99 +101,95 @@ export default defineComponent({
       diffEditorRef.value?.dispose?.()
     })
 
-    // originalModelPath
+    // original
     watch(
-      () => props.originalModelPath,
-      () => {
-        if (!monacoRef.value || !diffEditorRef.value) {
+      [() => props.originalModelPath, () => props.original, () => props.originalLanguage, () => props.language],
+      (
+        [newOriginalModelPath, newOriginal, newOriginalLanguage, newLanguage],
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        [oldOriginalModelPath, oldOriginal, oldOriginalLanguage, oldLanguage],
+      ) => {
+        if (!isDiffEditorReady.value) {
           return
         }
 
-        const originalEditor = diffEditorRef.value.getOriginalEditor()
-        const model = getOrCreateModel(
-          monacoRef.value,
-          props.original || '',
-          props.originalLanguage || props.language || 'text',
-          props.originalModelPath || '',
+        const originalEditor = diffEditorRef.value!.getOriginalEditor()
+        const currentOriginModel = originalEditor.getModel()
+        const newOriginModel = getOrCreateModel(
+          monacoRef.value!,
+          newOriginal || '',
+          newOriginalLanguage || newLanguage || 'text',
+          newOriginalModelPath || '',
         )
+        if (currentOriginModel !== newOriginModel) {
+          originalEditor.setModel(newOriginModel)
 
-        if (model !== originalEditor.getModel()) {
-          originalEditor.setModel(model)
-        }
-      },
-    )
-
-    // modifiedModelPath
-    watch(
-      () => props.modifiedModelPath,
-      () => {
-        if (!monacoRef.value || !diffEditorRef.value) {
+          // exit
           return
         }
 
-        const modifiedEditor = diffEditorRef.value.getModifiedEditor()
-        const model = getOrCreateModel(
-          monacoRef.value,
-          props.modified || '',
-          props.modifiedLanguage || props.language || 'text',
-          props.modifiedModelPath || '',
-        )
+        if (newOriginal !== originalEditor.getValue()) {
+          originalEditor.setValue(newOriginal || '')
+        }
 
-        if (model !== modifiedEditor.getModel()) {
-          modifiedEditor.setModel(model)
+        if (newOriginalLanguage !== oldOriginalLanguage || newLanguage !== oldLanguage) {
+          monacoRef.value!.editor.setModelLanguage(
+            diffEditorRef.value!.getModel()!.original,
+            newOriginalLanguage || newLanguage || 'text',
+          )
         }
       },
     )
 
     // modified
     watch(
-      () => props.modified,
-      () => {
+      [() => props.modifiedModelPath, () => props.modified, () => props.modifiedLanguage, () => props.language],
+      (
+        [newModifiedModelPath, newModified, newModifiedLanguage, newLanguage],
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        [oldModifiedModelPath, oldModified, oldModifiedLanguage, oldLanguage],
+      ) => {
         if (!isDiffEditorReady.value) {
           return
         }
 
         const modifiedEditor = diffEditorRef.value!.getModifiedEditor()
-        if (modifiedEditor.getOption(monacoRef.value!.editor.EditorOption.readOnly)) {
-          modifiedEditor.setValue(props.modified || '')
-        } else {
-          if (props.modified !== modifiedEditor.getValue()) {
-            modifiedEditor.executeEdits('', [
-              {
-                range: modifiedEditor.getModel()!.getFullModelRange(),
-                text: props.modified || '',
-                forceMoveMarkers: true,
-              },
-            ])
+        const currentModifiedModel = modifiedEditor.getModel()
+        const newModifiedModel = getOrCreateModel(
+          monacoRef.value!,
+          newModified || '',
+          newModifiedLanguage || newLanguage || 'text',
+          newModifiedModelPath || '',
+        )
+        if (currentModifiedModel !== newModifiedModel) {
+          modifiedEditor.setModel(newModifiedModel)
 
-            modifiedEditor.pushUndoStop()
-          }
-        }
-      },
-    )
-
-    // original
-    watch(
-      () => props.original,
-      () => {
-        diffEditorRef.value?.getModel()?.original.setValue(props?.original || '')
-      },
-    )
-
-    // language
-    watch(
-      () => [props.language, props.originalLanguage, props.modifiedLanguage],
-      () => {
-        if (!isDiffEditorReady.value) {
+          // exit
           return
         }
 
-        // eslint-disable
-        const { original, modified } = diffEditorRef.value!.getModel()!
+        if (newModified !== modifiedEditor.getValue()) {
+          const readOnlyCode = monacoRef.value!.editor.EditorOption.readOnly
+          if (modifiedEditor.getOption(readOnlyCode)) {
+            modifiedEditor.setValue(newModified || '')
+          } else {
+            modifiedEditor.executeEdits('', [
+              {
+                range: modifiedEditor.getModel()!.getFullModelRange(),
+                text: newModified || '',
+                forceMoveMarkers: true,
+              },
+            ])
+            modifiedEditor.pushUndoStop()
+          }
+        }
 
-        monacoRef.value!.editor.setModelLanguage(original, props.originalLanguage || props.language || 'text')
-
-        monacoRef.value!.editor.setModelLanguage(modified, props.originalLanguage || props.language || 'text')
+        if (newModifiedLanguage !== oldModifiedLanguage || newLanguage !== oldLanguage) {
+          monacoRef.value!.editor.setModelLanguage(
+            diffEditorRef.value!.getModel()!.modified,
+            newModifiedLanguage || newLanguage || 'text',
+          )
+        }
       },
     )
 
