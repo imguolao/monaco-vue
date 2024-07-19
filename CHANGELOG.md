@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/imguolao/monaco-vue/compare/v1.5.1...v1.5.2) (2024-07-19)
+
+### Bug Fixes
+
+- multi-model confusion error ([dcf21ce](https://github.com/imguolao/monaco-vue/commit/dcf21cec00aa62e9e1912ea27aae1451dd5d6c28))
+
 ## [1.5.1](https://github.com/imguolao/monaco-vue/compare/v1.5.0...v1.5.1) (2024-02-08)
 
 ### Bug Fixes
