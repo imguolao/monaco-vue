@@ -134,14 +134,13 @@ export default defineComponent({
           return
         }
 
-        const currentModel = editorRef.value!.getModel()
-        const newModel = getOrCreateModel(
-          monacoRef.value!,
-          newValue || props.defaultValue || '',
-          newLanguage || props.defaultLanguage || '',
-          newPath || props.defaultPath || '',
-        )
-        if (currentModel !== newModel) {
+        if (newPath !== oldPath) {
+          const newModel = getOrCreateModel(
+            monacoRef.value!,
+            newValue || props.defaultValue || '',
+            newLanguage || props.defaultLanguage || '',
+            newPath || props.defaultPath || '',
+          )
           props.saveViewState && viewStates.set(oldPath, editorRef.value!.saveViewState())
           editorRef.value!.setModel(newModel)
           props.saveViewState && editorRef.value!.restoreViewState(viewStates.get(newPath)!)

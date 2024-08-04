@@ -114,14 +114,13 @@ export default defineComponent({
         }
 
         const originalEditor = diffEditorRef.value!.getOriginalEditor()
-        const currentOriginModel = originalEditor.getModel()
-        const newOriginModel = getOrCreateModel(
-          monacoRef.value!,
-          newOriginal || '',
-          newOriginalLanguage || newLanguage || 'text',
-          newOriginalModelPath || '',
-        )
-        if (currentOriginModel !== newOriginModel) {
+        if (newOriginalModelPath !== oldOriginalModelPath) {
+          const newOriginModel = getOrCreateModel(
+            monacoRef.value!,
+            newOriginal || '',
+            newOriginalLanguage || newLanguage || 'text',
+            newOriginalModelPath || '',
+          )
           originalEditor.setModel(newOriginModel)
 
           // exit
@@ -154,14 +153,13 @@ export default defineComponent({
         }
 
         const modifiedEditor = diffEditorRef.value!.getModifiedEditor()
-        const currentModifiedModel = modifiedEditor.getModel()
-        const newModifiedModel = getOrCreateModel(
-          monacoRef.value!,
-          newModified || '',
-          newModifiedLanguage || newLanguage || 'text',
-          newModifiedModelPath || '',
-        )
-        if (currentModifiedModel !== newModifiedModel) {
+        if (oldModifiedModelPath !== newModifiedModelPath) {
+          const newModifiedModel = getOrCreateModel(
+            monacoRef.value!,
+            newModified || '',
+            newModifiedLanguage || newLanguage || 'text',
+            newModifiedModelPath || '',
+          )
           modifiedEditor.setModel(newModifiedModel)
 
           // exit
