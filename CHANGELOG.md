@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/imguolao/monaco-vue/compare/v1.5.2...v1.5.3) (2024-08-04)
+
+### Bug Fixes
+
+- un-redo is not working ([d6e3553](https://github.com/imguolao/monaco-vue/commit/d6e35535598f65b4692b43899c0d19c573e3801e))
+
 ## [1.5.2](https://github.com/imguolao/monaco-vue/compare/v1.5.1...v1.5.2) (2024-07-19)
 
 ### Bug Fixes

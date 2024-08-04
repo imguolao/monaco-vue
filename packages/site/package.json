@@ -1,7 +1,7 @@
 {
   "name": "site",
   "private": true,
-  "version": "1.5.2",
+  "version": "1.5.3",
   "scripts": {
     "start": "vite",
     "build": "vite build",
@@ -21,7 +21,7 @@
   "homepage": "https://imguolao.github.io/monaco-vue",
   "license": "MIT",
   "dependencies": {
-    "@guolao/vue-monaco-editor": "workspace:^1.5.2",
+    "@guolao/vue-monaco-editor": "workspace:^1.5.3",
     "vue": "^3.2.47",
     "vue-demi": "^0.13.11"
   },
