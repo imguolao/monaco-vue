@@ -1,16 +1,12 @@
 # monaco-vue
 
-🎉 version `v1` support vue 2&3 now ✌
-
-Use [monaco-editor](https://microsoft.github.io/monaco-editor/) loaded from [CDN](#cdn) in [Vue 2&3](https://vuejs.org/), no need to configure plugins in `webpack` (or `rollup`, ` vite`) and other packaging tools.
+Use monaco-editor loaded from CDN in Vue 2&3, no need to configure plugins in `webpack` (or `rollup`, ` vite`) and other packaging tools.
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
 
 English | [简体中文](https://github.com/imguolao/monaco-vue/blob/main/README.zh-CN.md)
 
-View [Demo](https://imguolao.github.io/monaco-vue/).
-
-If you wanna use [monaco-editor](https://microsoft.github.io/monaco-editor/) as an `NPM Package`, loading `monaco-editor` files from `node_modules` and bundling them into your code, you still need to use the plugin for the packaging tool.
+If you wanna use monaco-editor as an `NPM Package`, loading `monaco-editor` files from `node_modules` and bundling them into your code, you still need to use the plugin for the packaging tool. See [here](#npm-package).
 
 ## Installation
 
@@ -37,7 +33,7 @@ import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
-    // The recommended CDN config
+    // You can change the CDN config to load other versions
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
@@ -82,12 +78,12 @@ const MONACO_EDITOR_OPTIONS = {
 }
 
 const code = ref('// some code...')
-const editorRef = shallowRef()
-const handleMount = editor => (editorRef.value = editor)
+const editor = shallowRef()
+const handleMount = editorInstance => (editor.value = editorInstance)
 
 // your action
 function formatCode() {
-  editorRef.value?.getAction('editor.action.formatDocument').run()
+  editor.value?.getAction('editor.action.formatDocument').run()
 }
 </script>
 ```
@@ -116,17 +112,17 @@ const OPTIONS = {
   readOnly: true,
 }
 
-const diffEditorRef = shallowRef()
-const handleMount = diffEditor => (diffEditorRef.value = diffEditor)
+const diffEditor = shallowRef()
+const handleMount = diffEditorInstance => (diffEditor.value = diffEditorInstance)
 
 // get the original value
 function getOriginalValue() {
-  return diffEditorRef.value.getOriginalEditor().getValue()
+  return diffEditor.value.getOriginalEditor().getValue()
 }
 
 // get the modified value
 function getOriginalValue() {
-  return diffEditorRef.value.getModifiedEditor().getValue()
+  return diffEditor.value.getModifiedEditor().getValue()
 }
 </script>
 ```
@@ -181,7 +177,7 @@ function getOriginalValue() {
 
 ## Hooks
 
-`useMonaco` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load [monaco-editor](https://microsoft.github.io/monaco-editor/) from the CDN.
+`useMonaco` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load `monaco-editor` from the CDN.
 
 ```vue
 <template>
@@ -214,7 +210,7 @@ onUnmounted(() => !monacoRef.value && unload())
 
 ## CDN
 
-`vue-monaco-editor` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load the [monaco-editor](https://microsoft.github.io/monaco-editor/) from the CDN(the loading process of `loader` is asynchronous).
+`vue-monaco-editor` use [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) to load the `monaco-editor` from the CDN(the loading process of `loader` is asynchronous).
 
 The configuration of `loader` is global, only to be configured once.
 
@@ -225,7 +221,7 @@ import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
-    // The recommended CDN config
+    // You can change the CDN config to load other versions
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
@@ -259,7 +255,7 @@ loader.config({
 
 ## NPM Package
 
-If you wanna use [monaco-editor](https://microsoft.github.io/monaco-editor/) as an `NPM Package`, loading `monaco-editor` files from `node_modules` and bundling them into your code, you still need to use the plugin for the packaging tool.
+If you wanna use `monaco-editor` as an NPM Package, loading `monaco-editor` files from `node_modules` and bundling them into your code, you still need to use the plugin for the packaging tool.
 
 ```js
 import * as monaco from "monaco-editor"
@@ -310,7 +306,7 @@ If you are using `Rollup`, you can use the community provided plugin [rollup-plu
 
 ### Webpack
 
-If you are using `webpack`, the official [monaco-editor](https://microsoft.github.io/monaco-editor/) provides a `webpack` plugin called [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin), which you can install and use.
+If you are using `webpack`, `monaco-editor` officially provides a `webpack` plugin called [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin), which you can install and use.
 
 ## Inspiration
 
