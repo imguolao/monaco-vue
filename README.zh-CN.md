@@ -1,18 +1,18 @@
 # monaco-vue
 
-> 中文文档更新不及时，请查看英文文档。
-
-🎉 version `v1` 现在已经支持 vue 2&3 ✌
-
-不需要给 `webpack` (or `rollup`, `vite`) 等打包工具配置插件，就可以在 [Vue](https://vuejs.org/) 中使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)（从 [CDN](#cdn) 加载）。
+在 `Vue 2&3` 中使用从 CDN 远程加载的 `monaco-editor`，不需要打包。
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
 
 简体中文 | [English](https://github.com/imguolao/monaco-vue/blob/main/README.md)
 
-查看 [Demo](https://imguolao.github.io/monaco-vue/).
+## Why
 
-如果你想以 `NPM Package` 的形式使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)，从 `node_modules` 加载 `monaco-editor` 文件打包到你的代码中，则仍需要使用打包工具的插件，具体可[查看此处](#npm-package)。
+`monaco-editor` 对 esm 的支持不是很好，导致代码打包后文件体积很大。
+
+但官方团队在他们的文档网站里有用一个 loader 来远程懒加载编辑器的各种文件，所以我们也可以用 loader 从 CDN 加载文件来使用。
+
+如果你仍然想从 `node_modules` 引入 `monaco-editor` 文件并将它们打包到你的代码中（不使用远程加载），还是要使用打包工具的，具体可[查看此处](#npm-package)。
 
 ## Installation
 
@@ -26,7 +26,16 @@ Vue `<= 2.6.14` 需要安装 [@vue/composition-api](https://github.com/vuejs/com
 npm i @guolao/vue-monaco-editor @vue/composition-api
 ```
 
-当然，你也可以使用 [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/lib/umd/monaco-vue.js)。
+不要忘记注册 `@vue/composition-api` 插件。
+
+```ts
+import Vue from 'vue'
+import VueCompositionAPI from '@vue/composition-api'
+
+Vue.use(VueCompositionAPI)
+```
+
+当然，你也可以使用 [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/lib/umd/monaco-vue.js) 以 `script` 的方式引入资源来使用。
 
 ## Usage
 
@@ -39,10 +48,25 @@ import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
-    // The recommended CDN config
+    // 在这里更改 CDN 链接加载不同版本
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
+
+// 也可以不全局注册组件
+// main.ts
+import { loader } from '@guolao/vue-monaco-editor'
+loader.config({
+  paths: {
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs',
+  },
+})
+
+// editor.vue
+import { VueMonacoEditor } from '@guolao/vue-monaco-editor'
+export default {
+  components: { VueMonacoEditor },
+}
 ```
 
 **Editor**
@@ -67,12 +91,12 @@ const MONACO_EDITOR_OPTIONS = {
 }
 
 const code = ref('// some code...')
-const editorRef = shallowRef()
-const handleMount = editor => (editorRef.value = editor)
+const editor = shallowRef()
+const handleMount = editorInstance => (editor.value = editorInstance)
 
 // your action
 function formatCode() {
-  editorRef.value?.getAction('editor.action.formatDocument').run()
+  editor.value?.getAction('editor.action.formatDocument').run()
 }
 </script>
 ```
@@ -101,17 +125,17 @@ const OPTIONS = {
   readOnly: true,
 }
 
-const diffEditorRef = shallowRef()
-const handleMount = diffEditor => (diffEditorRef.value = diffEditor)
+const diffEditor = shallowRef()
+const handleMount = diffEditorInstance => (diffEditor.value = diffEditorInstance)
 
 // get the original value
 function getOriginalValue() {
-  return diffEditorRef.value.getOriginalEditor().getValue()
+  return diffEditor.value.getOriginalEditor().getValue()
 }
 
 // get the modified value
 function getOriginalValue() {
-  return diffEditorRef.value.getModifiedEditor().getValue()
+  return diffEditor.value.getModifiedEditor().getValue()
 }
 </script>
 ```
@@ -136,7 +160,7 @@ function getOriginalValue() {
 | width | `number` \| `string` | `100%` | 容器宽度 |  |
 | height | `number` \| `string` | `100%` | 容器高度 |  |
 | className | `string` |  | 内层容器 class |  |
-| onBeforeMount | `(monaco: Monaco) => void` |  | 编辑器实例创建前执行 |  |
+| onBeforeMount | `(monaco: Monaco) => void` |  | 编辑器实例创建前执行（不要在 vue2 用 `@before-mount`，为了兼容 vue3 导致问题，[问题详情][detail](https://v2.vuejs.org/v2/guide/components-custom-events#Event-Names)） |  |
 | onMount | `(editor: monaco.editor.IStandaloneCodeEditor, monaco: Monaco) => void` |  | 编辑器实例创建后执行 |  |
 | onChange | `(value: string \| undefined, monaco.editor.IModelContentChangedEvent) => void) => void` |  | 编辑改变值后执行 |  |
 | onValidate | `(markers: monaco.editor.IMarker[]) => void` |  | 当语法发生错误时执行 | `monaco-editor` 支持语法校验的语言[查看此处](https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages) |
@@ -166,7 +190,7 @@ function getOriginalValue() {
 
 ## Hooks
 
-`useMonaco` 使用 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 从 CDN 加载 [monaco-editor](https://microsoft.github.io/monaco-editor/)。
+`useMonaco` 使用 [@monaco-editor/loader](https://github.com/suren-atoyan/monaco-loader) 从 CDN 加载 `monaco-editor`。
 
 ```vue
 <template>
@@ -206,7 +230,7 @@ import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
-    // 推荐 CDN 配置
+    // CDN 配置
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
@@ -240,7 +264,7 @@ loader.config({
 
 ## NPM Package
 
-如果你想以 `NPM Package` 的形式使用 [monaco-editor](https://microsoft.github.io/monaco-editor/)，从 `node_modules` 中加载 `monaco-editor` 文件并打包到你的代码中，则仍需要使用打包工具的插件。
+如果你想从 `node_modules` 引入 `monaco-editor` 文件并将它们打包到你的代码中（不使用远程加载），就仍然需要打包。
 
 ```js
 import * as monaco from "monaco-editor"

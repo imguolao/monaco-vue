@@ -1,12 +1,18 @@
 # monaco-vue
 
-Use monaco-editor loaded from CDN in Vue 2&3, no need to configure plugins in `webpack` (or `rollup`, ` vite`) and other packaging tools.
+Use `monaco-editor` loaded from CDN in Vue 2&3, no need to bundling.
 
 [![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
 
 English | [简体中文](https://github.com/imguolao/monaco-vue/blob/main/README.zh-CN.md)
 
-If you wanna use monaco-editor as an `NPM Package`, loading `monaco-editor` files from `node_modules` and bundling them into your code, you still need to use the plugin for the packaging tool. See [here](#npm-package).
+## Why
+
+The `monaco-editor` doesn't support ESM very well, which results in large files when the code is bundled.
+
+But the official team has written a loader to lazy load files of the editor remotely, so we can load the files from a CDN to use it.
+
+If you still want to import `monaco-editor` files from `node_modules` and bundle them into your code (without using remote loading), you will need to use a bundling tool.See [here](#npm-package).
 
 ## Installation
 
@@ -18,6 +24,15 @@ Vue `<= 2.6.14` requires [@vue/composition-api](https://github.com/vuejs/composi
 
 ```sh
 npm i @guolao/vue-monaco-editor @vue/composition-api
+```
+
+Don't forget to register the `@vue/composition-api` plugin!
+
+```ts
+import Vue from 'vue'
+import VueCompositionAPI from '@vue/composition-api'
+
+Vue.use(VueCompositionAPI)
 ```
 
 Of course, you can also use [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/lib/umd/monaco-vue.js).
@@ -255,7 +270,7 @@ loader.config({
 
 ## NPM Package
 
-If you wanna use `monaco-editor` as an NPM Package, loading `monaco-editor` files from `node_modules` and bundling them into your code, you still need to use the plugin for the packaging tool.
+If you still want to import `monaco-editor` files from `node_modules` and bundle them into your code (without using remote loading), you will need to use a bundling tool.
 
 ```js
 import * as monaco from "monaco-editor"
