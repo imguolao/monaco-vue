@@ -2,7 +2,7 @@
 
 在 `Vue 2&3` 中使用从 CDN 远程加载的 `monaco-editor`，不需要打包。
 
-[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
+[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) [![npm downloads](https://img.shields.io/npm/dm/%40guolao%2Fvue-monaco-editor)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
 
 简体中文 | [English](https://github.com/imguolao/monaco-vue/blob/main/README.md)
 
@@ -52,8 +52,11 @@ app.use(VueMonacoEditorPlugin, {
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
+```
 
-// 也可以不全局注册组件
+不全局注册组件
+
+```ts
 // main.ts
 import { loader } from '@guolao/vue-monaco-editor'
 loader.config({

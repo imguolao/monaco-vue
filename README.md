@@ -2,7 +2,7 @@
 
 Use `monaco-editor` loaded from CDN in Vue 2&3, no need to bundling.
 
-[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
+[![gitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/imguolao/monaco-vue/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@guolao/vue-monaco-editor.svg?style=flat)](https://www.npmjs.com/package/@guolao/vue-monaco-editor) [![npm downloads](https://img.shields.io/npm/dm/%40guolao%2Fvue-monaco-editor)](https://www.npmjs.com/package/@guolao/vue-monaco-editor)
 
 English | [简体中文](https://github.com/imguolao/monaco-vue/blob/main/README.zh-CN.md)
 
@@ -12,7 +12,7 @@ The `monaco-editor` doesn't support ESM very well, which results in large files 
 
 But the official team has written a loader to lazy load files of the editor remotely, so we can load the files from a CDN to use it.
 
-If you still want to import `monaco-editor` files from `node_modules` and bundle them into your code (without using remote loading), you will need to use a bundling tool.See [here](#npm-package).
+If you still want to import `monaco-editor` files from `node_modules` and bundle them into your code (without using remote loading), you will need to use a bundling tool. See [here](#npm-package).
 
 ## Installation
 
@@ -39,7 +39,7 @@ Of course, you can also use [unpkg](https://unpkg.com/@guolao/vue-monaco-editor/
 
 ## Usage
 
-Register the component.
+**Global Registration**
 
 ```ts
 import { createApp } from 'vue'
@@ -52,8 +52,11 @@ app.use(VueMonacoEditorPlugin, {
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
   },
 })
+```
 
-// You can also:
+**Local Registration**
+
+```ts
 // main.ts
 import { loader } from '@guolao/vue-monaco-editor'
 loader.config({
