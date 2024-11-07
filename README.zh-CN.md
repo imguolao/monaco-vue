@@ -137,7 +137,7 @@ function getOriginalValue() {
 }
 
 // get the modified value
-function getOriginalValue() {
+function getModifiedValue() {
   return diffEditor.value.getModifiedEditor().getValue()
 }
 </script>
