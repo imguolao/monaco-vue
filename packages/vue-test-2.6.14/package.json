@@ -19,7 +19,7 @@
   "homepage": "https://imguolao.github.io/monaco-vue",
   "license": "MIT",
   "dependencies": {
-    "@monaco-editor/loader": "^1.4.0",
+    "@monaco-editor/loader": "^1.5.0",
     "@vue/composition-api": "^1.7.1",
     "vue": "2.6.14",
     "vue-demi": "^0.13.11"

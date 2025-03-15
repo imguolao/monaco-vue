@@ -45,7 +45,7 @@
   },
   "homepage": "https://imguolao.github.io/monaco-vue",
   "dependencies": {
-    "@monaco-editor/loader": "^1.4.0",
+    "@monaco-editor/loader": "^1.5.0",
     "vue-demi": "latest"
   },
   "devDependencies": {
