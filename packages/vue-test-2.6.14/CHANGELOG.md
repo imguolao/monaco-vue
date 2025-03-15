@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.5](https://github.com/imguolao/monaco-vue/compare/v1.5.4...v1.5.5) (2025-03-15)
+
+**Note:** Version bump only for package vue-test-2.6.14
+
 ## [1.5.4](https://github.com/imguolao/monaco-vue/compare/v1.5.3...v1.5.4) (2024-08-04)
 
 **Note:** Version bump only for package vue-test-2.6.14
