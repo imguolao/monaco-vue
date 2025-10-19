@@ -21,9 +21,9 @@
   "license": "MIT",
   "dependencies": {
     "@guolao/vue-monaco-editor": "workspace:^1.5.5",
-    "monaco-editor": "^0.43.0",
+    "monaco-editor": "^0.54.0",
     "vue": "^3.5.13",
-    "vue-demi": "^0.13.11"
+    "vue-demi": "^0.14.10"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

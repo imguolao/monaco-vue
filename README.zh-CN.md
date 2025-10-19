@@ -49,7 +49,7 @@ const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
     // 在这里更改 CDN 链接加载不同版本
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.54.0/min/vs'
   },
 })
 ```
@@ -61,7 +61,7 @@ app.use(VueMonacoEditorPlugin, {
 import { loader } from '@guolao/vue-monaco-editor'
 loader.config({
   paths: {
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs',
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.54.0/min/vs',
   },
 })
 
@@ -234,7 +234,7 @@ const app = createApp(App)
 app.use(VueMonacoEditorPlugin, {
   paths: {
     // CDN 配置
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.54.0/min/vs'
   },
 })
 ```
@@ -245,7 +245,7 @@ import { loader } from "@guolao/vue-monaco-editor"
 // CDN 加载
 loader.config({
   paths: {
-    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs'
+    vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.54.0/min/vs'
   },
 })
 
