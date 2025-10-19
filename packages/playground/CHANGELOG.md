@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/imguolao/monaco-vue/compare/v1.5.5...v1.6.0) (2025-10-19)
+
+### Features
+
+- update loader to v1.6.1 ([e2ba6a8](https://github.com/imguolao/monaco-vue/commit/e2ba6a82b1ba6f2bd27a04dc2ffa4c3a09938cbe))
+
 ## [1.5.5](https://github.com/imguolao/monaco-vue/compare/v1.5.4...v1.5.5) (2025-03-15)
 
 **Note:** Version bump only for package playground
