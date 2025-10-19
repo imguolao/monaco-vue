@@ -6,6 +6,10 @@ Use `monaco-editor` loaded from CDN in Vue 2&3, no need to bundling.
 
 English | [简体中文](https://github.com/imguolao/monaco-vue/blob/main/README.zh-CN.md)
 
+## Attention
+
+⚠️ The `monaco-editor` announced the deprecation of the AMD version in [v0.53.0](https://github.com/microsoft/monaco-editor/blob/HEAD/CHANGELOG.md#0530), supporting the use of the ESM version instead. Maybe you don't need to load it from the CDN.
+
 ## Why
 
 The `monaco-editor` doesn't support ESM very well, which results in large files when the code is bundled.
